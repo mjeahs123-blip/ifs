@@ -92,6 +92,33 @@ a{color:var(--accent);}
   nav{width:100%; height:auto; position:relative; border-left:none; border-bottom:1px solid var(--border);}
   main{padding:24px 5vw 60px;}
 }
+
+/* ===== VISUAL PARTS MAP ===== */
+.map-intro{background:linear-gradient(135deg,var(--accent-soft),var(--rose-soft));border:1px solid var(--border);border-radius:18px;padding:18px 20px;margin:18px 0 22px}
+.parts-map{position:relative;background:var(--card);border:1px solid var(--border);border-radius:22px;padding:28px 18px 34px;overflow:hidden;min-height:820px}
+.map-lines{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0}
+.map-lines path,.map-lines line{fill:none;stroke:#b9afa4;stroke-width:2;stroke-dasharray:6 6;opacity:.8}
+.map-lines .strong{stroke:var(--accent);stroke-width:3;stroke-dasharray:none;opacity:.9}
+.map-lines .warm{stroke:var(--rose);stroke-width:2.5}
+.map-grid{position:relative;z-index:1;display:grid;grid-template-columns:repeat(3,1fr);gap:16px;align-items:center}
+.map-card{background:rgba(255,255,255,.96);border:1px solid var(--border);border-radius:16px;padding:14px 13px;box-shadow:0 5px 18px rgba(70,55,40,.06);min-height:150px}
+.map-card h4{margin:0 0 7px;color:var(--accent);font-size:16px}
+.map-card .body{font-size:13px;line-height:1.7;margin-bottom:8px}
+.map-card .quick{background:var(--accent-soft);border-radius:10px;padding:8px 10px;font-size:12.5px;line-height:1.65}
+.map-card .bodymark{font-size:12.5px;color:var(--muted);margin:0 0 8px}
+.map-card.center{grid-column:2;grid-row:2 / span 2;border:2px solid var(--rose);background:linear-gradient(180deg,#fff,var(--rose-soft));min-height:190px;display:flex;flex-direction:column;justify-content:center;text-align:center}
+.map-card.center h4{color:var(--rose);font-size:20px}
+.map-card.center .body{font-size:14px}
+.map-card.center .quick{background:#fff;border:1px solid var(--border)}
+.map-card.small{min-height:140px}
+.map-legend{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 0;justify-content:center}
+.map-legend span{font-size:12px;padding:5px 10px;border-radius:999px;background:var(--accent-soft);color:var(--accent)}
+.quick-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:14px}
+.quick-item{border:1px solid var(--border);border-radius:14px;padding:13px;background:var(--card)}
+.quick-item h4{margin:0 0 5px;font-size:15px;color:var(--accent)}
+.quick-item p{margin:0;font-size:13.5px;line-height:1.75}
+@media(max-width:760px){.parts-map{min-height:0}.map-lines{display:none}.map-grid{grid-template-columns:1fr}.map-card.center{grid-column:auto;grid-row:auto}.quick-grid{grid-template-columns:1fr}}
+
 </style>
 </head>
 <body>
@@ -101,6 +128,8 @@ a{color:var(--accent);}
     <p class="sub">قراءة وتحليل لجلسات IFS الذاتية اللي كتبتيها</p>
     <div class="grp">البداية</div>
     <button data-t="intro" class="active">📖 مقدمة ومهم تقرينها</button>
+    <div class="grp">الخريطة</div>
+    <button data-t="map">🗺️ خريطة الأجزاء والتفاعل</button>
     <div class="grp">الأجزاء (11)</div>
     <button data-t="p1">💙 التعلق والخوف</button>
     <button data-t="p2">🛡️ جزء الحذر (الخوف من نرجسية)</button>
@@ -139,6 +168,121 @@ a{color:var(--accent);}
         <p>إذا تبين تحليل لأي من هذي، ارفعيها مرة ثانية بعد ما تعبينها بإجاباتچ وأقدر أضيفها هنا.</p>
       </div>
       <p style="color:var(--muted); font-size:13.5px;">هالصفحة خاصة بچ لحالچ ولا يشوفها أحد إلا إذا شاركتي الرابط بنفسچ.</p>
+    </section>
+
+    <!-- VISUAL MAP -->
+    <section id="map">
+      <span class="badge">صفحة الخريطة</span>
+      <h2>🗺️ خريطة الأجزاء: من يفعّل من؟</h2>
+      <div class="map-intro">
+        <b>هذه الخريطة تلخّص العلاقات التي ظهرت في الجلسات نفسها.</b><br>
+        الأسهم لا تعني أن الأجزاء "حقيقة سريرية" أو أنها تعمل دائمًا بهذا الترتيب؛ هي طريقة بصرية لقراءة الأنماط والروابط التي ظهرت في كلامچ. وإذا ما كان عندنا وصف جسدي واضح لجزء معيّن، مكتوب هنا صراحة: <b>غير موثّق في الجلسة</b> بدل ما نخترع علامة.
+      </div>
+
+      <div class="parts-map">
+        <svg class="map-lines" viewBox="0 0 900 820" preserveAspectRatio="none" aria-hidden="true">
+          <defs>
+            <marker id="arrowA" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto"><path d="M0,0 L0,6 L7,3 z" fill="#b9afa4"/></marker>
+            <marker id="arrowS" markerWidth="9" markerHeight="9" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#7c9473"/></marker>
+            <marker id="arrowW" markerWidth="9" markerHeight="9" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#c98a7d"/></marker>
+          </defs>
+          <path class="strong" marker-end="url(#arrowS)" d="M450 210 C450 275 450 300 450 355"/>
+          <path class="strong" marker-end="url(#arrowS)" d="M450 530 C450 600 450 635 450 700"/>
+          <path class="warm" marker-end="url(#arrowW)" d="M160 160 C270 210 335 245 405 290"/>
+          <path class="warm" marker-end="url(#arrowW)" d="M740 160 C630 210 565 245 495 290"/>
+          <path marker-end="url(#arrowA)" d="M160 420 C270 400 335 395 405 395"/>
+          <path marker-end="url(#arrowA)" d="M740 420 C630 400 565 395 495 395"/>
+          <path marker-end="url(#arrowA)" d="M160 675 C270 610 335 560 405 520"/>
+          <path marker-end="url(#arrowA)" d="M740 675 C630 610 565 560 495 520"/>
+          <path marker-end="url(#arrowA)" d="M280 300 C245 345 245 390 260 445"/>
+          <path marker-end="url(#arrowA)" d="M620 300 C655 345 655 390 640 445"/>
+          <path marker-end="url(#arrowA)" d="M300 600 C340 565 375 545 405 525"/>
+          <path marker-end="url(#arrowA)" d="M600 600 C560 565 525 545 495 525"/>
+        </svg>
+
+        <div class="map-grid">
+          <div class="map-card small">
+            <h4>💙 التعلّق والخوف</h4>
+            <p class="bodymark"><b>الجسم:</b> الحلق والصدر — ضغط/حرارة، ومعه ضيقة باليدين والصدر.</p>
+            <div class="quick"><b>تهدئة سريعة:</b> يد على الصدر + 3 أنفاس 4-7-8، وتأجيل أي محادثة كبيرة 20 دقيقة.</div>
+          </div>
+
+          <div class="map-card small">
+            <h4>🛡️ الحذر</h4>
+            <p class="bodymark"><b>الجسم:</b> القلب، الرقبة، الظهر، الرأس — خوف وضيق واختناق وتشتت.</p>
+            <div class="quick"><b>تهدئة سريعة:</b> تنفّس 4-4-6 لخمس دورات، ثم: «شنو تحتاجين مني الحين حتى ترتاحين شوي؟»</div>
+          </div>
+
+          <div class="map-card">
+            <h4>🕊️ مريم الطايرة</h4>
+            <p class="bodymark"><b>الجسم:</b> الظهر، الذراعات، الرقبة.</p>
+            <div class="quick"><b>تهدئة سريعة:</b> حطي إيدچ على ذراعاتچ: «سامعتچ، وما تحتاجين تطيرين حتى أشوفچ» + دقيقتين حضور بدون كلام.</div>
+          </div>
+
+          <div class="map-card">
+            <h4>⚡ التوتر والانجماد</h4>
+            <p class="bodymark"><b>الجسم:</b> رجفة باليد + إحساس ركض/اندفاع للإنجاز.</p>
+            <div class="quick"><b>تهدئة سريعة:</b> 5-4-3-2-1، ثم اختاري <b>أصغر خطوة واحدة</b> بدل محاولة إصلاح كل شيء.</div>
+          </div>
+
+          <div class="map-card center">
+            <h4>🧸 الطفلة الصغيرة</h4>
+            <p class="body">في الخريطة الحالية تظهر كمركز/جذر محتمل لعدة حماة: خوفها الأساسي أن تُترك، وأن يكون فيها شيء غلط، وأنها غير محبوبة.</p>
+            <div class="quick"><b>عند ظهورها:</b> لا تحاولي إقناعها أو إسكاتها. حضور هادئ، احتضان متخيّل، وجملة: <b>«أحبچ في كل الأحوال، ما فيچ شي غلط.»</b></div>
+          </div>
+
+          <div class="map-card">
+            <h4>🌫️ الوجود</h4>
+            <p class="bodymark"><b>الجسم:</b> ورد في الموقف تخدّر وضيق بالصدر؛ لم تُسجّل علامة جسدية أخرى بشكل محدد.</p>
+            <div class="quick"><b>تهدئة سريعة:</b> ذكّري نفسچ: «مو لازم أثبت وجودي الآن» + نفس بطيء + 15 دقيقة لعب/راحة بدون هدف.</div>
+          </div>
+
+          <div class="map-card">
+            <h4>💔 الوعود المكسورة</h4>
+            <p class="bodymark"><b>الجسم:</b> ثقل وضغط في الظهر والصدر.</p>
+            <div class="quick"><b>تهدئة سريعة:</b> رجّعي الكتفين ببطء للخلف مع نفس عميق، وقولي: «هذا وزن قديم متراكم، مو بس هالمرة».</div>
+          </div>
+
+          <div class="map-card">
+            <h4>⚖️ المقارِن</h4>
+            <p class="bodymark"><b>الجسم:</b> الصدر ينقبض وينكمش + الذراعات؛ وُصف أيضًا بأنه موجود بالقلب.</p>
+            <div class="quick"><b>تهدئة سريعة:</b> سمّي ما يحدث فقط: «قارنت نفسي بأختي الحين»، بدون تحليل أو حكم.</div>
+          </div>
+
+          <div class="map-card">
+            <h4>🔥 حنّونو</h4>
+            <p class="bodymark"><b>الجسم:</b> شد بالرقبة والحلق والظهر وورا الرقبة، وحرارة/«نار» بالرقبة والظهر والذراعات.</p>
+            <div class="quick"><b>تهدئة سريعة:</b> جملة حد واحدة: «قلت اللي عندي، والباقي مو مسؤوليتي» ثم توقفي عن التبرير المتكرر.</div>
+          </div>
+
+          <div class="map-card">
+            <h4>🍦 القهر</h4>
+            <p class="bodymark"><b>الجسم:</b> غير موثّق بشكل محدد في الجلسة المنقولة.</p>
+            <div class="quick"><b>تهدئة سريعة:</b> رعاية فورية خلال نفس الساعة + سؤال: «شنو أحتاجه أنا الحين، بغض النظر عنه؟»</div>
+          </div>
+
+          <div class="map-card">
+            <h4>🛡️ الحامي الصغير</h4>
+            <p class="bodymark"><b>الجسم:</b> غير موثّق بشكل محدد في الجلسة المنقولة. يظهر خصوصًا مع الوحدة أو خوف ابتعاد أحد.</p>
+            <div class="quick"><b>تهدئة سريعة:</b> لا تطلبين منه السكوت؛ قولي: «خلنا نشوف علامات الأمان أول» ثم افحصي الثبات والاحترام والوفاء.</div>
+          </div>
+        </div>
+      </div>
+
+      <h3>🔗 أهم التفاعلات</h3>
+      <div class="quick-grid">
+        <div class="quick-item"><h4>💙 التعلّق ↔ 🔥 حنّونو</h4><p>الملف يذكر أن الاثنين مرتبطان؛ «حنّونو» نفسه قال إن حل جزء التعلّق مهم حتى يثق. كلاهما يراقب الإهمال ويدفع نحو التواصل قبل الراحة.</p></div>
+        <div class="quick-item"><h4>🧸 الطفلة → 🕊️ 🌫️ ⚖️ 🔥</h4><p>الخلاصة تعتبر الطفلة الصغيرة مركزًا/جذرًا محتملًا تتغذى منه مريم الطايرة والوجود والمقارن وحنّونو؛ أي أن الحماية تأخذ أشكالًا مختلفة حول نفس الاحتياج للحب والأمان.</p></div>
+        <div class="quick-item"><h4>💔 الوعود ↔ 🍦 القهر</h4><p>القهر وُصف كنسخة متقدمة من موضوع الوعود المكسورة: محاولة، انتظار، القليل، ثم الاستنزاف والانكسار. لذلك جُمِعا في الخطة نفسها.</p></div>
+        <div class="quick-item"><h4>🛡️ الحامي الصغير ↔ 🧸 الطفلة</h4><p>الحامي ظهر بوظيفة حماية الطفلة والبحث عمن يحبها. لذلك ترتيب العمل المقترح في الملف: بناء الثقة مع الحامي أولًا، ثم الاقتراب من الطفلة بدون ضغط.</p></div>
+        <div class="quick-item"><h4>🛡️ الحذر + ⚡ التوتر</h4><p>كلاهما يعمل كإنذار: الأول يستبق ردود الفعل، والثاني يدفع للحركة والإنجاز لتخفيف الإحساس بعدم الأمان. التهدئة هنا تعني تقليل الاستنفار قبل اتخاذ قرار.</p></div>
+        <div class="quick-item"><h4>🤍 القاعدة الذهبية</h4><p>هذه الصفحة ليست لإسكات أي جزء. الفكرة: <b>ألاحظ → أسمّي → أهدّئ الجسم → أسمع الجزء → بعدها أقرر.</b></p></div>
+      </div>
+
+      <div class="care" style="margin-top:22px">
+        <h3>⚠️ ملاحظة أمان</h3>
+        <p>التهدئة السريعة هنا أدوات ملاحظة وتنظيم، وليست علاجًا أو بديلًا عن الدعم المهني. وإذا رجعت بقوة أفكار «الاختفاء» المذكورة في صفحات مريم الطايرة والتوتر، ارجعي لتوجيه الأمان الموجود في المقدمة والخلاصة واطلبي دعمًا حقيقيًا فورًا.</p>
+      </div>
     </section>
 
     <!-- PART 1 -->
