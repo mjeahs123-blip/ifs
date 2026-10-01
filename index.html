@@ -7,6 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.6.1/mermaid.min.js"></script>
 <style>
 :root{
   --bg:#faf6f0; --card:#ffffff; --ink:#3b3530; --muted:#7a726a;
@@ -84,16 +85,26 @@ table.weekplan th{background:var(--accent-soft); color:var(--accent);}
 table.weekplan td.day{font-weight:700; white-space:nowrap;}
 @media (max-width:600px){ table.weekplan{font-size:12.5px;} }
 .quote2{border-right:3px solid var(--rose); background:var(--rose-soft); border-radius:0 10px 10px 0; padding:8px 16px; margin-bottom:8px; font-size:14.5px; font-weight:600;}
-footer.note{color:var(--muted); font-size:13px; margin-top:40px; text-align:center;}
-a{color:var(--accent);}
-::-webkit-scrollbar{width:8px} ::-webkit-scrollbar-thumb{background:var(--border); border-radius:4px}
-@media (max-width:760px){
-  .layout{flex-direction:column;}
-  nav{width:100%; height:auto; position:relative; border-left:none; border-bottom:1px solid var(--border);}
-  main{padding:24px 5vw 60px;}
+.hub-diagram{margin:18px 0 8px; text-align:center;}
+.hub-center{
+  display:inline-block; background:var(--rose); color:#fff; border-radius:16px;
+  padding:16px 26px; font-size:16px; font-weight:700; margin-bottom:16px;
 }
+.hub-center span{display:block; font-size:12px; font-weight:400; opacity:.9; margin-top:4px;}
+.hub-ring{display:flex; flex-wrap:wrap; justify-content:center; gap:12px;}
+.hub-card{
+  background:var(--card); border:1px solid var(--border); border-radius:12px;
+  padding:10px 16px; font-size:13.5px; min-width:130px; position:relative;
+}
+.hub-card::before{content:"↑"; display:block; text-align:center; color:var(--rose); font-size:15px; margin-bottom:2px;}
+.hub-arrow-between{text-align:center; font-size:22px; color:var(--muted); margin:10px 0;}
+table.signals{width:100%; border-collapse:collapse; margin:14px 0; font-size:14px;}
+table.signals th, table.signals td{border:1px solid var(--border); padding:9px 12px; text-align:right; vertical-align:top;}
+table.signals th{background:var(--accent-soft); color:var(--accent);}
+table.signals td.pname{font-weight:700; white-space:nowrap;}
+@media (max-width:700px){ table.signals{font-size:12.5px;} }
 
-/* ===== VISUAL PARTS MAP ===== */
+/* ===== VISUAL PARTS MAP (SVG) ===== */
 .map-intro{background:linear-gradient(135deg,var(--accent-soft),var(--rose-soft));border:1px solid var(--border);border-radius:18px;padding:18px 20px;margin:18px 0 22px}
 .parts-map{position:relative;background:var(--card);border:1px solid var(--border);border-radius:22px;padding:28px 18px 34px;overflow:hidden;min-height:820px}
 .map-lines{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0}
@@ -119,6 +130,35 @@ a{color:var(--accent);}
 .quick-item p{margin:0;font-size:13.5px;line-height:1.75}
 @media(max-width:760px){.parts-map{min-height:0}.map-lines{display:none}.map-grid{grid-template-columns:1fr}.map-card.center{grid-column:auto;grid-row:auto}.quick-grid{grid-template-columns:1fr}}
 
+/* ===== FEELINGS WHEEL ===== */
+.wheel-steps{background:var(--card); border:1px solid var(--border); border-radius:16px; padding:18px 22px; margin-bottom:20px;}
+.wheel-steps ol{margin:8px 0 0; padding-inline-start:20px;}
+.wheel-steps li{margin-bottom:8px; font-size:14.5px;}
+.wheel-core{display:flex; flex-wrap:wrap; gap:10px; justify-content:center; margin-bottom:22px;}
+.core-btn{
+  font-family:'Tajawal',sans-serif; cursor:pointer; border:2px solid var(--border); background:var(--card);
+  border-radius:18px; padding:14px 22px; font-size:15.5px; font-weight:700; color:var(--ink);
+  min-width:130px; text-align:center; transition:.15s;
+}
+.core-btn .sub{display:block; font-size:11.5px; font-weight:400; color:var(--muted); margin-top:3px;}
+.core-btn:hover{border-color:var(--accent);}
+.core-btn.active{background:var(--accent); border-color:var(--accent); color:#fff;}
+.core-btn.active .sub{color:#fff; opacity:.85;}
+.wheel-panel{display:none;}
+.wheel-panel.active{display:block; animation:fadeIn .2s ease;}
+.feel-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:14px; margin-bottom:10px;}
+.feel-card{background:var(--card); border:1px solid var(--border); border-right:4px solid var(--accent); border-radius:12px; padding:14px 16px;}
+.feel-card h5{margin:0 0 6px; font-size:15.5px; color:var(--ink);}
+.feel-card .root{font-size:13px; color:var(--ink-dim,var(--muted)); margin-bottom:8px;}
+.feel-card .calm{background:var(--accent-soft); border-radius:8px; padding:7px 10px; font-size:12.5px;}
+footer.note{color:var(--muted); font-size:13px; margin-top:40px; text-align:center;}
+a{color:var(--accent);}
+::-webkit-scrollbar{width:8px} ::-webkit-scrollbar-thumb{background:var(--border); border-radius:4px}
+@media (max-width:760px){
+  .layout{flex-direction:column;}
+  nav{width:100%; height:auto; position:relative; border-left:none; border-bottom:1px solid var(--border);}
+  main{padding:24px 5vw 60px;}
+}
 </style>
 </head>
 <body>
@@ -130,6 +170,7 @@ a{color:var(--accent);}
     <button data-t="intro" class="active">📖 مقدمة ومهم تقرينها</button>
     <div class="grp">الخريطة</div>
     <button data-t="map">🗺️ خريطة الأجزاء والتفاعل</button>
+    <button data-t="wheel">🎡 عجلة المشاعر التفصيلية</button>
     <div class="grp">الأجزاء (11)</div>
     <button data-t="p1">💙 التعلق والخوف</button>
     <button data-t="p2">🛡️ جزء الحذر (الخوف من نرجسية)</button>
@@ -142,6 +183,8 @@ a{color:var(--accent);}
     <button data-t="p9">🍦 جزء القهر</button>
     <button data-t="p10">🛡️ الحامي الصغير</button>
     <button data-t="p11">🧸 الطفلة الصغيرة</button>
+    <div class="grp">خريطة شاملة</div>
+    <button data-t="diagram">🗺️ الدايقرام + الإسعاف السريع</button>
     <div class="grp">الخلاصة</div>
     <button data-t="closing">🤍 الخيط المشترك والخطوة الجاية</button>
   </nav>
@@ -282,6 +325,94 @@ a{color:var(--accent);}
       <div class="care" style="margin-top:22px">
         <h3>⚠️ ملاحظة أمان</h3>
         <p>التهدئة السريعة هنا أدوات ملاحظة وتنظيم، وليست علاجًا أو بديلًا عن الدعم المهني. وإذا رجعت بقوة أفكار «الاختفاء» المذكورة في صفحات مريم الطايرة والتوتر، ارجعي لتوجيه الأمان الموجود في المقدمة والخلاصة واطلبي دعمًا حقيقيًا فورًا.</p>
+      </div>
+    </section>
+
+    <!-- FEELINGS WHEEL -->
+    <section id="wheel">
+      <span class="badge">أداة يومية</span>
+      <h2>🎡 عجلة المشاعر التفصيلية</h2>
+      <div class="situation">أداة مبنية على مبدأ "عجلة المشاعر" المعروف نفسيًا (Feelings Wheel): بدل ما تبقين عند شعور عام وغامض ("تعبانة"، "مضايقة")، تنزلين خطوة خطوة لحد تلقطين الشعور الدقيق — وهذا اللي يوصلچ فعليًا "للجذر" ويخليچ تعرفين الحل المناسب له بالضبط.</div>
+
+      <div class="wheel-steps">
+        <h3 style="margin-top:0;">📖 طريقة الاستخدام بالتفصيل</h3>
+        <ol>
+          <li><b>وقفي وتنفسي 3 أنفاس بطيئة.</b> هذا وحده يفرق — تسرّعچ يخليچ تلقطين أول كلمة تجيچ بالبال، مو الأدق.</li>
+          <li><b>اختاري الفئة الأساسية الأقرب</b> من الستة تحت (حزن / غضب / خوف / قوة / سلام / سعادة). لو مرتبكة بين وحدتين، اختاري اللي بجسمچ أقوى.</li>
+          <li><b>اضغطي عليها</b> — بتطلع لچ قائمة مشاعر دقيقة تحتها. اقرئيهم وحدة وحدة وسألي نفسچ: "هذا بالضبط؟ أو قريب بس مو هو؟"</li>
+          <li><b>لمّا تحسين "آه، هذا بالضبط"</b> — هذا هو الجذر. تحت كل شعور دقيق مكتوب سبب محتمل له (علّه يفسر ليش يجيچ)، وطريقة تهدئة مختصرة له بالذات.</li>
+          <li><b>طبّقي التهدئة فورًا</b>، حتى لو بسيطة — الهدف تهدّين الجسم أول، مو تحللين كل شي بنفس اللحظة.</li>
+          <li><b>لو الشعور ثقيل وتكرر أكثر من مرة بالأسبوع</b> (زي اليأس، الاكتئاب، الهلع)، هذا إشارة تاخذينه لمعالجچ، مو بس تهدئينه وتمشين.</li>
+        </ol>
+      </div>
+
+      <div class="wheel-core">
+        <button class="core-btn active" data-w="sad">😢 حزن<span class="sub">Sad</span></button>
+        <button class="core-btn" data-w="mad">😠 غضب<span class="sub">Mad</span></button>
+        <button class="core-btn" data-w="scared">😨 خوف<span class="sub">Scared</span></button>
+        <button class="core-btn" data-w="powerful">💪 قوة<span class="sub">Powerful</span></button>
+        <button class="core-btn" data-w="peaceful">🕊️ سلام<span class="sub">Peaceful</span></button>
+        <button class="core-btn" data-w="joyful">😀 سعادة<span class="sub">Joyful</span></button>
+      </div>
+
+      <div class="wheel-panel active" id="w-sad">
+        <div class="feel-grid">
+          <div class="feel-card"><h5>مهمَلة <span style="font-size:11.5px; color:var(--muted); font-weight:400;">(Neglected)</span></h5><div class="root">الجذر: حاجة ما حصّلت انتباه أو اهتمام كافي منچ أو من حد ثاني.</div><div class="calm">يد على القلب + "احتياجي بالاهتمام صحيح."</div></div>
+          <div class="feel-card"><h5>مرفوضة <span style="font-size:11.5px; color:var(--muted); font-weight:400;">(Rejected)</span></h5><div class="root">الجذر: خوف إنچ مو مستحقة أو مو مرغوبة.</div><div class="calm">"الرفض يوصف تصرف الطرف الثاني، مو قيمتي."</div></div>
+          <div class="feel-card"><h5>يائسة <span style="font-size:11.5px; color:var(--muted); font-weight:400;">(Hopeless)</span></h5><div class="root">الجذر: تكرار محاولات بلا نتيجة واضحة.</div><div class="calm">نفس بطيء + سؤال "شنو أصغر شي أقدر عليه الحين؟"</div></div>
+          <div class="feel-card"><h5>وحيدة <span style="font-size:11.5px; color:var(--muted); font-weight:400;">(Lonely)</span></h5><div class="root">الجذر: غياب تواصل حقيقي — مع نفسچ أو مع حد ثاني.</div><div class="calm">وقفة 30 ثانية: "أنا شاعرة بشنو الحين؟"</div></div>
+          <div class="feel-card"><h5>محزونة بعمق / مكتئبة <span style="font-size:11.5px; color:var(--muted); font-weight:400;">(Depressed)</span></h5><div class="root">الجذر: تراكم طويل بدون دعم كافي.</div><div class="calm">هذي تستاهل دعم مختص، مو تمرين سريع بس — راجعي ملاحظة الأمان بالمقدمة.</div></div>
+          <div class="feel-card"><h5>مذنبة <span style="font-size:11.5px; color:var(--muted); font-weight:400;">(Guilty)</span></h5><div class="root">الجذر: اعتقاد إنچ مسؤولة عن شي مو كله بإيدچ.</div><div class="calm">اسألي: "لو صديقتي بنفس الموقف، بلومها؟"</div></div>
+        </div>
+      </div>
+
+      <div class="wheel-panel" id="w-mad">
+        <div class="feel-grid">
+          <div class="feel-card"><h5>مقهورة <span style="font-size:11.5px; color:var(--muted); font-weight:400;">(Wronged)</span></h5><div class="root">الجذر: شعور بعدم العدل أو تكرار إهمال.</div><div class="calm">تنفس 4-4-6 + سمّي الموقف بدون تحليل.</div></div>
+          <div class="feel-card"><h5>محبطة <span style="font-size:11.5px; color:var(--muted); font-weight:400;">(Frustrated)</span></h5><div class="root">الجذر: محاولة تكررت بدون نتيجة تناسب جهدچ.</div><div class="calm">حركة جسدية سريعة (مشي دقيقتين) لتفريغ الطاقة.</div></div>
+          <div class="feel-card"><h5>مستاءة <span style="font-size:11.5px; color:var(--muted); font-weight:400;">(Resentful)</span></h5><div class="root">الجذر: ألم قديم ما انحل وتراكم بصمت.</div><div class="calm">اكتبي الموقف بدون تحرير 5 دقائق.</div></div>
+          <div class="feel-card"><h5>مستغَلة <span style="font-size:11.5px; color:var(--muted); font-weight:400;">(Used)</span></h5><div class="root">الجذر: إحساس إن جهدچ يُستهلك بدون مقابل.</div><div class="calm">جملة حد واحدة ("قلت اللي عندي") ثم توقفي.</div></div>
+          <div class="feel-card"><h5>غيورة <span style="font-size:11.5px; color:var(--muted); font-weight:400;">(Jealous)</span></h5><div class="root">الجذر: مقارنة تكشف احتياج حقيقي ما تحقق لچ.</div><div class="calm">سؤال: "شنو بالضبط أبيه أنا؟" بدل التركيز على الطرف الثاني.</div></div>
+          <div class="feel-card"><h5>كارهة (كره شديد) <span style="font-size:11.5px; color:var(--muted); font-weight:400;">(Hateful)</span></h5><div class="root">الجذر: ألم عميق ما لقى مكان يتوجه له بأمان.</div><div class="calm">لا تحكمين على الشعور — لاحظيه وخليه يمر بدون فعل فوري.</div></div>
+        </div>
+      </div>
+
+      <div class="wheel-panel" id="w-scared">
+        <div class="feel-grid">
+          <div class="feel-card"><h5>قلقة <span style="font-size:11.5px; color:var(--muted); font-weight:400;">(Anxious)</span></h5><div class="root">الجذر: توقع كارثي لشي لسا ما صار فعليًا.</div><div class="calm">تأريض 5-4-3-2-1.</div></div>
+          <div class="feel-card"><h5>خايفة من الترك <span style="font-size:11.5px; color:var(--muted); font-weight:400;">(Fear of Abandonment)</span></h5><div class="root">الجذر: تجربة قديمة بعدم الثبات أو الأمان.</div><div class="calm">يد على الصدر + "أنا بأمان الحين."</div></div>
+          <div class="feel-card"><h5>متوترة <span style="font-size:11.5px; color:var(--muted); font-weight:400;">(Tense)</span></h5><div class="root">الجذر: جسم بوضع تأهب مستمر.</div><div class="calm">تمديد الكتفين ببطء للخلف.</div></div>
+          <div class="feel-card"><h5>مرتبكة <span style="font-size:11.5px; color:var(--muted); font-weight:400;">(Confused)</span></h5><div class="root">الجذر: معلومات أو مشاعر متضاربة بنفس اللحظة.</div><div class="calm">سمّي كل شعور تحسين فيه بكلمة وحدة، وحدة وحدة.</div></div>
+          <div class="feel-card"><h5>خايفة تفشلين <span style="font-size:11.5px; color:var(--muted); font-weight:400;">(Fear of Failure)</span></h5><div class="root">الجذر: ربط قيمتچ بالإنجاز أو بالنتيجة.</div><div class="calm">"أنا مستاهلة حتى لو ما نجحت هالمرة."</div></div>
+          <div class="feel-card"><h5>مرعوبة / هلع <span style="font-size:11.5px; color:var(--muted); font-weight:400;">(Panicked)</span></h5><div class="root">الجذر: جسم وصل لذروة تأهب قصوى.</div><div class="calm">نفس 4-7-8 × 5 + ماء بارد على المعصمين.</div></div>
+        </div>
+      </div>
+
+      <div class="wheel-panel" id="w-powerful">
+        <div class="feel-grid">
+          <div class="feel-card"><h5>واثقة <span style="font-size:11.5px; color:var(--muted); font-weight:400;">(Confident)</span></h5><div class="root">الجذر: إنجاز أو حدود نجحتي تمشين عليها.</div><div class="calm">لا تحتاجين تهدئة — احتفلي بالشعور.</div></div>
+          <div class="feel-card"><h5>فخورة <span style="font-size:11.5px; color:var(--muted); font-weight:400;">(Proud)</span></h5><div class="root">الجذر: اعتراف بمجهودچ أو بخطوة سويتيها.</div><div class="calm">اكتبيها بـ"دفتر الأدلة المضادة" (مذكور بجزء 3).</div></div>
+          <div class="feel-card"><h5>قادرة <span style="font-size:11.5px; color:var(--muted); font-weight:400;">(Capable)</span></h5><div class="root">الجذر: شعور بالكفاءة بموقف معيّن.</div><div class="calm">استخدمي الزخم لخطوة صغيرة جديدة اليوم.</div></div>
+          <div class="feel-card"><h5>مسيطرة <span style="font-size:11.5px; color:var(--muted); font-weight:400;">(In Control)</span></h5><div class="root">الجذر: وضوح وحدود واضحة بموقف.</div><div class="calm">حافظي على الروتين اللي وصلچ له.</div></div>
+        </div>
+      </div>
+
+      <div class="wheel-panel" id="w-peaceful">
+        <div class="feel-grid">
+          <div class="feel-card"><h5>مرتاحة <span style="font-size:11.5px; color:var(--muted); font-weight:400;">(Relaxed)</span></h5><div class="root">الجذر: جسم مو بحالة تأهب للحظة.</div><div class="calm">استمتعي بالشعور بدون ذنب.</div></div>
+          <div class="feel-card"><h5>ممتنة <span style="font-size:11.5px; color:var(--muted); font-weight:400;">(Grateful)</span></h5><div class="root">الجذر: ملاحظة شي إيجابي بحياتچ.</div><div class="calm">اكتبيها بجملة امتنان (زي خطة السبت الأسبوعية).</div></div>
+          <div class="feel-card"><h5>متقبلة <span style="font-size:11.5px; color:var(--muted); font-weight:400;">(Accepting)</span></h5><div class="root">الجذر: تصالح مع موقف ما يتغير حاليًا.</div><div class="calm">لا شي — هذي نقطة وصول صحية بذاتها.</div></div>
+          <div class="feel-card"><h5>مطمئنة <span style="font-size:11.5px; color:var(--muted); font-weight:400;">(At Ease)</span></h5><div class="root">الجذر: أمان لحظي حقيقي.</div><div class="calm">خليه يطول بدون مقاطعة أو تحليل.</div></div>
+        </div>
+      </div>
+
+      <div class="wheel-panel" id="w-joyful">
+        <div class="feel-grid">
+          <div class="feel-card"><h5>مبسوطة <span style="font-size:11.5px; color:var(--muted); font-weight:400;">(Happy)</span></h5><div class="root">الجذر: لحظة بسيطة أو إنجاز صغير.</div><div class="calm">عيشيها بدون ما تقللين منها.</div></div>
+          <div class="feel-card"><h5>متحمسة <span style="font-size:11.5px; color:var(--muted); font-weight:400;">(Excited)</span></h5><div class="root">الجذر: توقع شي جميل قادم.</div><div class="calm">شاركيها مع حد يهمچ أمره.</div></div>
+          <div class="feel-card"><h5>مرحة <span style="font-size:11.5px; color:var(--muted); font-weight:400;">(Playful)</span></h5><div class="root">الجذر: إذن داخلي باللعب (نادر بملفاتچ — خذيه بجدية لما يجي).</div><div class="calm">اعطيها وقت، حتى لو دقايق بس.</div></div>
+          <div class="feel-card"><h5>محبوبة <span style="font-size:11.5px; color:var(--muted); font-weight:400;">(Loved)</span></h5><div class="root">الجذر: لحظة اتصال حقيقي مع حد.</div><div class="calm">ثبّتيها بذاكرتچ كدليل مضاد لمعتقد "محد يحبني."</div></div>
+        </div>
       </div>
     </section>
 
@@ -846,6 +977,63 @@ a{color:var(--accent);}
       </div>
     </section>
 
+    <!-- DIAGRAM -->
+    <section id="diagram">
+      <span class="badge">خريطة شاملة</span>
+      <h2>🗺️ دايقرام الأجزاء + الإسعاف السريع</h2>
+      <div class="situation">خريطة بصرية تلخّص كيف الأجزاء الـ11 يتفاعلون مع بعض، + جدول مرجعي سريع: العلامة الجسدية اللي تدل إن الجزء طلع، والحل السريع اللي يهدّيه بدقيقة أو دقيقتين (مو العلاج الكامل، هذا بس إسعاف أولي لحظة الأزمة).</div>
+
+      <h3>🧸 العنقود الأول: المركز وحماته الخمسة</h3>
+      <div class="hub-diagram">
+        <div class="hub-center">🧸 الطفلة الصغيرة (11)<span>المركز — "ليش ما أحد يحبني زي ما أنا؟"</span></div>
+        <div class="hub-ring">
+          <div class="hub-card">🛡️ الحامي الصغير (10)</div>
+          <div class="hub-card">🕊️ مريم الطايرة (3)</div>
+          <div class="hub-card">🌫️ الوجود (5)</div>
+          <div class="hub-card">⚖️ المقارن (7)</div>
+          <div class="hub-card">🔥 حنّونو (8)</div>
+        </div>
+      </div>
+      <p style="text-align:center; font-size:13px; color:var(--muted);">كل سهم (↑) يعني: هذا الجزء يحمي أو يتغذى من جرح "الطفلة الصغيرة" نفسه.</p>
+
+      <div class="hub-arrow-between">🔥 حنّونو (8) ↔ 💙 التعلق والخوف (1)</div>
+      <p style="text-align:center; font-size:13.5px; color:var(--ink-dim); max-width:600px; margin:0 auto 10px;">نفس الجذر — الجزء نفسه قال "لازم تُحلّ جزء التعلق أول" حتى يثق فيچ.</p>
+
+      <h3>💍 العنقود الثاني: مثلث "الزوج والوعود"</h3>
+      <div class="hub-diagram">
+        <div class="hub-center" style="background:var(--warn);">💔 الوعود المكسورة (6)<span>مركز العنقود</span></div>
+        <div class="hub-ring">
+          <div class="hub-card">🛡️ جزء الحذر (2)</div>
+          <div class="hub-card">🍦 جزء القهر (9)</div>
+        </div>
+      </div>
+      <p style="text-align:center; font-size:13px; color:var(--muted);">الثلاثة يدورون حول نفس الموضوع: وعد ← كسر ← تفاوض بارد ← استنزاف.</p>
+
+      <h3>⚡ جزء شبه مستقل: التوتر والانجماد</h3>
+      <div class="list-panel-note" style="background:var(--card); border:1px solid var(--border); border-radius:14px; padding:16px 20px; text-align:center; max-width:640px; margin:0 auto 10px;">
+        <p style="margin:0;">⚡ <b>التوتر والانجماد (4)</b> محفزاته مستقلة (الأمومة، إدارة الوقت)، بس يشترك مع "الطفلة الصغيرة" بنفس الاعتقاد العميق: <b>"أنا عبء."</b> رابط غير مباشر، مو حماية مباشرة زي العنقود الأول.</p>
+      </div>
+
+      <h3>📋 جدول الإسعاف السريع — العلامة الجسدية والحل الفوري</h3>
+      <table class="signals">
+        <thead><tr><th>الجزء</th><th>العلامة الجسدية</th><th>الحل السريع (30 ثانية - دقيقتين)</th></tr></thead>
+        <tbody>
+          <tr><td class="pname">💙 التعلق والخوف</td><td>خنقة وضغط بالصدر والحلق، ضيقة بالإيدين</td><td>يد على الصدر + نفس 4-7-8 × 3 مرات</td></tr>
+          <tr><td class="pname">🛡️ جزء الحذر</td><td>اختناق، ألم بالقلب والرقبة والظهر والراس</td><td>نفس 4-4-6 × 5 دورات + أجّلي أي رد فعل 24 ساعة</td></tr>
+          <tr><td class="pname">🕊️ مريم الطايرة</td><td>ألم بالظهر والذراعين والرقبة</td><td>يد على الذراعين + "سامعتچ، ما تحتاجين تطيرين"</td></tr>
+          <tr><td class="pname">⚡ التوتر والانجماد</td><td>رجفة باليد</td><td>تأريض 5-4-3-2-1 + مهمة وحدة بس</td></tr>
+          <tr><td class="pname">🌫️ جزء الوجود</td><td>تخدّر وضيق بالصدر</td><td>نفس عميق + "أنا موجودة بدون إثبات"</td></tr>
+          <tr><td class="pname">💔 الوعود المكسورة</td><td>ثقل وضغط بالظهر والصدر</td><td>تمديد الكتفين ببطء للخلف + "هذا وزن قديم"</td></tr>
+          <tr><td class="pname">⚖️ المقارن</td><td>انقباض وانكماش بالصدر والذراعين</td><td>سؤال "دليل حقيقي أو جرح قديم؟" + تنفس بطيء</td></tr>
+          <tr><td class="pname">🔥 حنّونو</td><td>شد بالرقبة والحلق، إحساس حار بالرقبة والظهر والذراعين</td><td>يد على الحلق + "قلت اللي عندي، والباقي مو مسؤوليتي"</td></tr>
+          <tr><td class="pname">🍦 جزء القهر</td><td>إنهاك جسدي شامل بعد الانكسار</td><td>فعل رعاية فوري لنفسچ (ماء، مشي دقيقتين، شي تحبينه)</td></tr>
+          <tr><td class="pname">🛡️ الحامي الصغير</td><td>إحساس مفاجئ بالوحدة أو فراغ بالصدر <span style="color:var(--muted); font-size:12px;">(تقديري، ما ذُكر صراحة)</span></td><td>"أنا بأمان، أقدر أختار بنفسي مين يستاهل ثقتي"</td></tr>
+          <tr><td class="pname">🧸 الطفلة الصغيرة</td><td>غصة بالحلق أو ثقل بالقلب <span style="color:var(--muted); font-size:12px;">(تقديري، ما ذُكر صراحة)</span></td><td>يد على القلب + "أنا بأمان، ما فيني شي غلط"</td></tr>
+        </tbody>
+      </table>
+      <p style="font-size:13px; color:var(--muted);">الحل السريع هنا إسعاف أولي بس — الخطط العلاجية الكاملة موجودة تحت كل جزء بصفحته الخاصة.</p>
+    </section>
+
     <!-- CLOSING -->
     <section id="closing">
       <span class="badge">الخلاصة</span>
@@ -953,6 +1141,15 @@ document.querySelectorAll('nav button').forEach(btn=>{
     btn.classList.add('active');
     document.getElementById(btn.dataset.t).classList.add('active');
     window.scrollTo(0,0);
+  });
+});
+
+document.querySelectorAll('.core-btn').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    document.querySelectorAll('.core-btn').forEach(b=>b.classList.remove('active'));
+    document.querySelectorAll('.wheel-panel').forEach(p=>p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('w-'+btn.dataset.w).classList.add('active');
   });
 });
 </script>
