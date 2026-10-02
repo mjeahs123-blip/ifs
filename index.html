@@ -7,12 +7,11 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.6.1/mermaid.min.js"></script>
 <style>
 :root{
   --bg:#faf6f0; --card:#ffffff; --ink:#3b3530; --muted:#7a726a;
   --accent:#7c9473; --accent-soft:#e7efe2; --rose:#c98a7d; --rose-soft:#f7e9e5;
-  --border:#eae3d8; --warn:#b5544a; --warn-soft:#fdeeec;
+  --border:#eae3d8; --warn:#b5544a; --warn-soft:#fdeeec; --on-accent:#fff; --ink-dim:var(--muted);
   box-sizing:border-box;
   padding-top: env(safe-area-inset-top,0px);
   padding-bottom: env(safe-area-inset-bottom,0px);
@@ -21,13 +20,13 @@
   :root:not([data-theme="light"]){
     --bg:#221f1c; --card:#2b2723; --ink:#ede7df; --muted:#b3a99c;
     --accent:#9db794; --accent-soft:#33392f; --rose:#e0a99b; --rose-soft:#3a2d29;
-    --border:#3a342d; --warn:#e79088; --warn-soft:#3a2320;
+    --border:#3a342d; --warn:#e79088; --warn-soft:#3a2320; --on-accent:#1d1a17;
   }
 }
 :root[data-theme="dark"]{
   --bg:#221f1c; --card:#2b2723; --ink:#ede7df; --muted:#b3a99c;
   --accent:#9db794; --accent-soft:#33392f; --rose:#e0a99b; --rose-soft:#3a2d29;
-  --border:#3a342d; --warn:#e79088; --warn-soft:#3a2320;
+  --border:#3a342d; --warn:#e79088; --warn-soft:#3a2320; --on-accent:#1d1a17;
 }
 *{box-sizing:border-box}
 html,body{height:100%}
@@ -48,7 +47,7 @@ nav button{
   border-radius:10px; cursor:pointer; margin-bottom:4px; line-height:1.5;
 }
 nav button:hover{background:var(--accent-soft);}
-nav button.active{background:var(--accent); color:#fff;}
+nav button.active{background:var(--accent); color:var(--on-accent);}
 nav .grp{font-size:11.5px; color:var(--muted); margin:16px 4px 6px; letter-spacing:.5px;}
 main{flex:1; padding:36px 5vw 80px; max-width:900px; margin:0 auto; min-width:0;}
 section{display:none;}
@@ -72,8 +71,8 @@ h3{font-size:18px; color:var(--accent); margin:28px 0 10px; display:flex; align-
   border:1px solid var(--accent); border-radius:20px; padding:6px 14px; font-family:inherit;
   font-size:13.5px; cursor:pointer;
 }
-.copybtn:hover{background:var(--accent); color:#fff;}
-.copybtn.copied{background:var(--accent); color:#fff;}
+.copybtn:hover{background:var(--accent); color:var(--on-accent);}
+.copybtn.copied{background:var(--accent); color:var(--on-accent);}
 .treat{border-right:4px solid var(--rose);}
 .treat p{margin:6px 0;}
 .treat ul{margin:6px 0 10px; padding-inline-start:20px;}
@@ -87,7 +86,7 @@ table.weekplan td.day{font-weight:700; white-space:nowrap;}
 .quote2{border-right:3px solid var(--rose); background:var(--rose-soft); border-radius:0 10px 10px 0; padding:8px 16px; margin-bottom:8px; font-size:14.5px; font-weight:600;}
 .hub-diagram{margin:18px 0 8px; text-align:center;}
 .hub-center{
-  display:inline-block; background:var(--rose); color:#fff; border-radius:16px;
+  display:inline-block; background:var(--rose); color:var(--on-accent); border-radius:16px;
   padding:16px 26px; font-size:16px; font-weight:700; margin-bottom:16px;
 }
 .hub-center span{display:block; font-size:12px; font-weight:400; opacity:.9; margin-top:4px;}
@@ -108,19 +107,19 @@ table.signals td.pname{font-weight:700; white-space:nowrap;}
 .map-intro{background:linear-gradient(135deg,var(--accent-soft),var(--rose-soft));border:1px solid var(--border);border-radius:18px;padding:18px 20px;margin:18px 0 22px}
 .parts-map{position:relative;background:var(--card);border:1px solid var(--border);border-radius:22px;padding:28px 18px 34px;overflow:hidden;min-height:820px}
 .map-lines{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0}
-.map-lines path,.map-lines line{fill:none;stroke:#b9afa4;stroke-width:2;stroke-dasharray:6 6;opacity:.8}
+.map-lines path,.map-lines line{fill:none;stroke:var(--muted);stroke-width:2;stroke-dasharray:6 6;opacity:.8}
 .map-lines .strong{stroke:var(--accent);stroke-width:3;stroke-dasharray:none;opacity:.9}
 .map-lines .warm{stroke:var(--rose);stroke-width:2.5}
 .map-grid{position:relative;z-index:1;display:grid;grid-template-columns:repeat(3,1fr);gap:16px;align-items:center}
-.map-card{background:rgba(255,255,255,.96);border:1px solid var(--border);border-radius:16px;padding:14px 13px;box-shadow:0 5px 18px rgba(70,55,40,.06);min-height:150px}
+.map-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:14px 13px;box-shadow:0 5px 18px rgba(70,55,40,.06);min-height:150px}
 .map-card h4{margin:0 0 7px;color:var(--accent);font-size:16px}
 .map-card .body{font-size:13px;line-height:1.7;margin-bottom:8px}
 .map-card .quick{background:var(--accent-soft);border-radius:10px;padding:8px 10px;font-size:12.5px;line-height:1.65}
 .map-card .bodymark{font-size:12.5px;color:var(--muted);margin:0 0 8px}
-.map-card.center{grid-column:2;grid-row:2 / span 2;border:2px solid var(--rose);background:linear-gradient(180deg,#fff,var(--rose-soft));min-height:190px;display:flex;flex-direction:column;justify-content:center;text-align:center}
+.map-card.center{grid-column:2;grid-row:2 / span 2;border:2px solid var(--rose);background:linear-gradient(180deg,var(--card),var(--rose-soft));min-height:190px;display:flex;flex-direction:column;justify-content:center;text-align:center}
 .map-card.center h4{color:var(--rose);font-size:20px}
 .map-card.center .body{font-size:14px}
-.map-card.center .quick{background:#fff;border:1px solid var(--border)}
+.map-card.center .quick{background:var(--card);border:1px solid var(--border)}
 .map-card.small{min-height:140px}
 .map-legend{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 0;justify-content:center}
 .map-legend span{font-size:12px;padding:5px 10px;border-radius:999px;background:var(--accent-soft);color:var(--accent)}
@@ -142,8 +141,8 @@ table.signals td.pname{font-weight:700; white-space:nowrap;}
 }
 .core-btn .sub{display:block; font-size:11.5px; font-weight:400; color:var(--muted); margin-top:3px;}
 .core-btn:hover{border-color:var(--accent);}
-.core-btn.active{background:var(--accent); border-color:var(--accent); color:#fff;}
-.core-btn.active .sub{color:#fff; opacity:.85;}
+.core-btn.active{background:var(--accent); border-color:var(--accent); color:var(--on-accent);}
+.core-btn.active .sub{color:var(--on-accent); opacity:.85;}
 .wheel-panel{display:none;}
 .wheel-panel.active{display:block; animation:fadeIn .2s ease;}
 .feel-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:14px; margin-bottom:10px;}
@@ -151,27 +150,6 @@ table.signals td.pname{font-weight:700; white-space:nowrap;}
 .feel-card h5{margin:0 0 6px; font-size:15.5px; color:var(--ink);}
 .feel-card .root{font-size:13px; color:var(--ink-dim,var(--muted)); margin-bottom:8px;}
 .feel-card .calm{background:var(--accent-soft); border-radius:8px; padding:7px 10px; font-size:12.5px;}
-/* ===== SYSTEMS CASCADE DIAGRAM ===== */
-.sys-intro{background:linear-gradient(135deg,var(--accent-soft),var(--rose-soft)); border:1px solid var(--border); border-radius:16px; padding:18px 22px; margin-bottom:20px;}
-.two-cycles{display:grid; grid-template-columns:1fr 1fr; gap:26px; margin-bottom:10px;}
-@media(max-width:820px){.two-cycles{grid-template-columns:1fr;}}
-.two-cycles h4{font-size:16px; text-align:center; margin-bottom:12px; color:var(--rose);}
-.cycle{max-width:420px; margin:0 auto; display:flex; flex-direction:column; align-items:center;}
-.cycle-step{width:100%; background:var(--card); border:1px solid var(--border); border-radius:12px; padding:10px 16px; text-align:center; font-size:13.5px;}
-.cycle-step.fight{border:2px dashed var(--warn); background:var(--warn-soft);}
-.cycle-step.hub{border:2px solid var(--rose); background:var(--rose-soft); font-weight:700;}
-.cycle-arrow{color:var(--accent); font-size:18px; line-height:1; margin:3px 0;}
-.cycle-loop{margin-top:10px; padding:8px 18px; border:1px dashed var(--accent); border-radius:30px; color:var(--accent); font-size:12.5px; text-align:center;}
-.converge{text-align:center; margin:18px 0; font-size:14px; color:var(--muted);}
-.compare{display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:14px;}
-@media(max-width:700px){.compare{grid-template-columns:1fr;}}
-.compare-card{border-radius:14px; padding:16px 18px; border:1px solid var(--border); background:var(--card); font-size:13.5px;}
-.compare-card.a{border-right:4px solid var(--accent);}
-.compare-card.b{border-right:4px solid var(--warn);}
-.vs-mid{text-align:center; font-size:20px; color:var(--rose); margin:-6px 0 10px;}
-.result-box{background:var(--rose-soft); border-radius:10px; padding:10px 14px; font-size:13px; margin-bottom:22px;}
-.sub-sys{background:var(--card); border:1px solid var(--border); border-right:4px solid var(--accent); border-radius:14px; padding:16px 20px; margin-bottom:12px;}
-.sub-sys h4{margin:0 0 6px; color:var(--accent); font-size:16px;}
 /* ===== SYSTEMS / CYCLE ===== */
 .cluster-h{display:flex; align-items:center; gap:12px; margin:30px 0 4px;}
 .cluster-h .ico{width:36px; height:36px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:17px; flex-shrink:0;}
@@ -192,14 +170,46 @@ table.signals td.pname{font-weight:700; white-space:nowrap;}
 footer.note{color:var(--muted); font-size:13px; margin-top:40px; text-align:center;}
 a{color:var(--accent);}
 ::-webkit-scrollbar{width:8px} ::-webkit-scrollbar-thumb{background:var(--border); border-radius:4px}
+.silent{background:var(--accent-soft); border:2px solid var(--accent); border-radius:18px; padding:20px 22px; margin:24px 0;}
+.silent h3{margin:0 0 10px; color:var(--accent);}
+.silent .big{font-size:18px; font-weight:900; line-height:1.8; margin:0 0 12px;}
+.silent .big mark{background:var(--rose-soft); color:var(--rose); padding:1px 8px; border-radius:8px;}
+.silent ol{margin:8px 0 14px; padding-inline-start:22px;}
+.silent li{margin-bottom:8px;}
+.silent .twocol{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:12px;}
+.silent .twocol div{background:var(--card); border:1px solid var(--border); border-radius:12px; padding:12px 14px; font-size:14px;}
+@media(max-width:700px){.silent .twocol{grid-template-columns:1fr;}}
+.mbar{display:none}
 @media (max-width:760px){
   .layout{flex-direction:column;}
-  nav{width:100%; height:auto; position:relative; border-left:none; border-bottom:1px solid var(--border);}
-  main{padding:24px 5vw 60px;}
+  .mbar{
+    display:flex; align-items:center; gap:12px; position:sticky; top:env(safe-area-inset-top,0px); z-index:60;
+    height:54px; padding:0 14px; background:var(--card); border-bottom:1px solid var(--border);
+  }
+  .mbar button{
+    font-family:inherit; font-size:15px; font-weight:700; background:var(--accent); color:var(--on-accent);
+    border:none; border-radius:12px; padding:8px 14px; cursor:pointer; flex:0 0 auto;
+  }
+  .mbar .cur{font-size:14.5px; color:var(--muted); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; min-width:0;}
+  nav{
+    display:none; position:fixed; z-index:55; left:0; right:0; bottom:0;
+    top:calc(env(safe-area-inset-top,0px) + 54px);
+    width:100%; height:auto; flex:none; border:none; padding:16px 14px calc(24px + env(safe-area-inset-bottom,0px));
+    overflow-y:auto; overscroll-behavior:contain;
+  }
+  nav.open{display:block;}
+  nav button{padding:13px 14px; font-size:15.5px;}
+  nav h1,nav p.sub{display:none;}
+  body.menu-open{overflow:hidden;}
+  main{padding:20px 5vw 60px;}
 }
 </style>
 </head>
 <body>
+<header class="mbar">
+  <button id="menuBtn" type="button" aria-expanded="false" aria-controls="nav">☰ القائمة</button>
+  <span class="cur" id="curTitle"></span>
+</header>
 <div class="layout">
   <nav id="nav">
     <h1>🌿 خارطة الأجزاء</h1>
@@ -242,14 +252,7 @@ a{color:var(--accent);}
       </div>
 
       <h3>📂 عن الملفات</h3>
-      <div class="missing">
-        <p>من أصل 17 ملف رفعتيهم أول مرة، <b>6</b> فيها إجابات حقيقية، وبعدين رفعتِ "المقارنة" فصار <b>7</b>، وبعدها "الكلام اللاإرادي ولومه أغلب الوقت" فصار <b>8</b>. الباقي كان إما فاضي تمامًا أو نسخة من القالب بدون أي جواب:</p>
-        <ul>
-          <li><b>فاضية تمامًا (بدون أي نص):</b> Systems، الخوف من الماما، الكره، جزء صعب (لاتحاولين الدراسة واختيار أفضل الأماكن)</li>
-          <li><b>فيها بس أسئلة القالب بدون إجابات:</b> template وكل نسخه، التلاعب، لإثةحمشفث</li>
-        </ul>
-        <p>إذا تبين تحليل لأي من هذي، ارفعيها مرة ثانية بعد ما تعبينها بإجاباتچ وأقدر أضيفها هنا.</p>
-      </div>
+      <div class="missing"><p>الموقع الحين فيه 11 جزء لكل واحد صفحته، وكل جزء مبني على إجاباتچ بالجلسات اللي رفعتيها. إذا تبين تضيفين جزء جديد أو تعدلين على جزء موجود، ارسلي الأسئلة والأجوبة وأحدّث الصفحة مع الخريطة والدايقرام والخلاصة.</p></div>
       <p style="color:var(--muted); font-size:13.5px;">هالصفحة خاصة بچ لحالچ ولا يشوفها أحد إلا إذا شاركتي الرابط بنفسچ.</p>
     </section>
 
@@ -504,9 +507,9 @@ a{color:var(--accent);}
         <div class="cycle-down">↓</div>
         <div class="cycle-box">3️⃣ نجاح مؤقت؟ <b>راحة وقتية</b> — المحفّز يرجع لاحقًا من جديد</div>
         <div class="cycle-down">↓ (لو تعبوا/فشلوا)</div>
-        <div class="cycle-box">4️⃣ الألم يوصل للمنفيين <b>(الطفلة الصغيرة، مريم الطايرة)</b> — وحدة وعدم استحقاق</div>
+        <div class="cycle-box">4️⃣ الألم يوصل للمنفيين <b>(الطفلة الصغيرة، مريم الطايرة)</b> — وحدة وعدم استحقاق<br><small style="color:var(--rose)">لو وصلتي هنا: شوفي "لو فات الفوت — المرحلة أ" تحت</small></div>
         <div class="cycle-down">↓</div>
-        <div class="cycle-box">5️⃣ المطفئون يتدخلون طارئ — تجميد/هروب، ابتعاد، أو انفجار</div>
+        <div class="cycle-box">5️⃣ المطفئون يتدخلون طارئ — تجميد/هروب، ابتعاد، أو انفجار<br><small style="color:var(--rose)">لو وصلتي هنا: شوفي "لو فات الفوت — المرحلة ب" تحت</small></div>
         <div class="cycle-down">↓</div>
         <div class="cycle-box">6️⃣ تفريغ مؤقت ← إنهاك ← المدراء يرجعون يسيطرون من جديد</div>
         <div class="cycle-loop">↻ الدورة تتكرر لين يصير تدخّل واعي (زي اللي بهالموقع)</div>
@@ -535,6 +538,104 @@ a{color:var(--accent);}
         <div class="cycle-box">7️⃣ <b>تسجيل الملاحظة (اختياري):</b> جملة وحدة بدفتر أو بالجوال: "اليوم [الجزء] تفعّل بسبب [المحفز]، وسويت [الفعل]." هذا يبني أرشيف يوريچ الأنماط مع الوقت، ويوقف الدورة قبل ما توصل للمنفيين والمطفئين.</div>
       </div>
       <p style="text-align:center; font-size:13.5px; color:var(--ink-dim,var(--muted)); max-width:600px; margin:14px auto 0;">جربي الطريقة أول مرة على موقف بسيط، مو موقف ثقيل — عشان تتعرف عليها إيدچ وعقلچ قبل ما تحتاجينها بلحظة صعبة.</p>
+      <h3 style="margin-top:40px;">🆘 لو فات الفوت: وصلنا للمنفيين أو المطفئين</h3>
+      <div class="situation">ما كل مرة تلحقين الخطوة 2، وهذا طبيعي مو فشل. أحيانًا الموقف يجي مفاجئ، أو تكونين تعبانة أصلًا، فالنظام يطلع للطبقة اللي بعدها. هنا الهدف يتغير: مو "أرجع للخطوة 2 بالقوة"، بل <b>أتعامل مع المرحلة اللي أنا فيها الحين بالطريقة المناسبة لها</b>. الطبقات الثلاث ما تنعامل بنفس الأسلوب، فلا تطبقين عليها نفس خطوات المدراء.</div>
+
+      <h3 style="margin-top:26px;">🧡 المرحلة أ · الألم وصل للمنفيين (الخطوة 4)</h3>
+      <div class="card">
+        <p><b>كيف أعرف إني هنا؟</b> الإحساس يتغير من "قلق وتحليل" إلى ثقل وحزن وصغر: وحدة، "أنا عبء"، "ما أحد يحبني"، رغبة بالبكاء أو الانكماش، أو إحساس إنچ صرتي صغيرة. (الطفلة الصغيرة ومريم الطايرة غالبًا هنا.)</p>
+        <p><b>القاعدة الأهم:</b> هذا مو وقت التحليل ولا حل المشكلة ولا فتح الجرح بالتفصيل. وقتها الجزء محتاج <b>حضور وأمان</b>، مو فهم.</p>
+      </div>
+      <div class="cycle-flow">
+        <div class="cycle-box">1️⃣ <b>وقفي كل شي وخففي العبء:</b> لا تردين على أحد، لا تقررين شي، لا تفتحين محادثة صعبة. قولي لنفسچ: "الحين وقت رعاية، مو وقت حل."</div>
+        <div class="cycle-down">↓</div>
+        <div class="cycle-box">2️⃣ <b>الجسم أول:</b> مكان آمن ودافئ (بطانية، جلسة مريحة)، يد على الصدر أو الذراعين، نفس بطيء أطول على الزفير. ماي أو شي دافي تشربينه.</div>
+        <div class="cycle-down">↓</div>
+        <div class="cycle-box">3️⃣ <b>افصلي "الطفلة" عن "الراشدة":</b> قولي: "هذي مشاعر الطفلة اللي بداخلي، وأنا الراشدة موجودة وياها." هذا يخفف الاندماج، لأن الألم يحس إنه حقيقة اليوم بينما هو جرح قديم.</div>
+        <div class="cycle-down">↓</div>
+        <div class="cycle-box">4️⃣ <b>حضور بدون كلام (2-5 دقايق) — شوفي "الجلوس الصامت" تحت:</b> تخيلي نفسچ تجلسين جنبها أو تحضنينها بدون ما تحاولين تغيّرينها أو تسكّتينها. وإذا حبيتي جملة وحدة: "أنا وياچ، وما فيچ شي غلط."</div>
+        <div class="cycle-down">↓</div>
+        <div class="cycle-box">5️⃣ <b>اسمحي لها تطلع بقدر ما تتحملين:</b> بكاء، كتابة بدون تحرير، رسالة ما تُرسل (من صفحة "تفريغ المشاعر"). إذا زاد الألم بشكل ما تقدرين تتحملينه، وقفي واتجهي للتأريض والتنفس.</div>
+        <div class="cycle-down">↓</div>
+        <div class="cycle-box">6️⃣ <b>اطلبي حضور بشري:</b> رسالة أو مكالمة لشخص واحد آمن، حتى لو بس "أنا تعبانة اليوم وأحتاج أحد معي". المنفي ما يهدأ فقط بالحضور الداخلي، يحتاج بعد حضور حقيقي.</div>
+        <div class="cycle-down">↓</div>
+        <div class="cycle-box">7️⃣ <b>بعدين، مو الحين:</b> لما ترتاحين، ارجعي وسألي: "شنو المحفز؟ أي مدير تعب؟" وأجّلي أي حديث عن الجذر لجلسة هادية، أو لمعالجچ.</div>
+      </div>
+
+
+      <div class="silent">
+        <h3>🤍 الجلوس الصامت: "أنا قاعدة وياها وساكتة"</h3>
+        <p class="big">اللي لاحظتيه بنفسچ مهم: <mark>الحضور بدون كلام</mark> هو أساس الشغل مع المنفيين، مو بديل عنه.</p>
+        <p><b>ليش يخفف عليچ؟</b></p>
+        <ul>
+          <li><b>ما فيه شي تثبتينه:</b> الكلام يحمل إحساس "لازم أشرح وأبرر وأقنع"، وهذا بالضبط النمط اللي يتعبچ مع حنّونو والوجود. بالصمت ما فيه شرح ولا مساومة ولا اختبار، فالجزء يحس إنه مقبول كما هو.</li>
+          <li><b>الاستماع يوصّل الرسالة اللي ما قالها أحد لها:</b> "أنا موجودة وياچ ومو ماشية". الطفلة ما تحتاج جملة صح، تحتاج تحس إن حد بقي.</li>
+          <li><b>الجهاز العصبي يهدأ بالحضور قبل الكلمات:</b> الكلام يشغّل العقل التحليلي، والصمت يخلي الجسم يستقبل الأمان.</li>
+          <li><b>أنتِ هنا "الراشدة" مو "جزء ثاني":</b> الجلوس بدون محاولة تصليح هو حالة الذات (Self) بالضبط: هادية، فضولية، حاضرة.</li>
+        </ul>
+        <p><b>كيف تسوينها، خطوة خطوة:</b></p>
+        <ol>
+          <li><b>مكان هادي ودافي</b> وجسم مرتاح. يد على الصدر أو الذراعين لو تحبين.</li>
+          <li><b>جملة وحدة بالبداية بس:</b> "أنا هنا. ما تحتاجين تقولين شي، بس أبي أكون وياچ." وبعدها اسكتي.</li>
+          <li><b>اسمعي بدون ما تردين:</b> إذا جاچ إحساس أو صورة أو كلمة، خليه يمر، لا تصححينه ولا تحللينه ولا تحلينه.</li>
+          <li><b>إذا جات فكرة مقاطعة</b> ("لازم أسوي كذا"، "هذا غلط") لاحظيها بلطف وارجعي لمكانچ جنبها.</li>
+          <li><b>من دقيقتين إلى عشر دقايق</b> تكفي. القصير الهادي أفضل من الطويل المرهق.</li>
+          <li><b>الختام:</b> "شكرًا إنچ قعدتي وياي. بنرجع مرة ثانية." لا تخلينها تحس إنچ تركتيها فجأة.</li>
+        </ol>
+        <div class="twocol">
+          <div><b>✅ علامات إنه ماشي زين:</b> الجسم يرتخي، النفس أبطأ، دمعة أو تنهيدة، إحساس بقرب أو دفا.</div>
+          <div><b>⏸️ وقفي وارجعي للتأريض لو:</b> الشعور صار طاغي، أو حسيتي بتخدر أو غرق، أو رجعت فكرة "أختفي". وقتها قومي، حركي جسمچ، وكلمي أحد.</div>
+        </div>
+        <p style="margin-top:12px; font-size:14px; color:var(--muted);">ملاحظة: الصمت مع نفسچ جميل، بس ما يغني عن حضور إنسان حقيقي بحياتچ. استخدميه جنب التواصل مع ناس آمنة، مو بدالهم.</p>
+      </div>
+      <div class="quick-grid">
+        <div class="quick-item"><h4>✅ يفيد هنا</h4><p>الدفا، الحضور، الصوت الهادي، الجمل البسيطة، الراحة، شخص آمن.</p></div>
+        <div class="quick-item"><h4>🚫 لا تسوين هنا</h4><p>إقناع الجزء إن مشاعره "غلط"، مواجهة زوجچ أو أمچ، قرارات كبيرة، جلسة IFS عميقة بوسط الانهيار، أو لوم نفسچ لأنها طلعت.</p></div>
+      </div>
+
+      <div class="care">
+        <h3>⚠️ لو الألم وصل لفكرة "أختفي"</h3>
+        <p>أحيانًا المنفي يتكلم بأقسى جمله. لو جاتچ فكرة الاختفاء أو إنچ عبء، لا تتعاملين معها كجزء تحللينه لحالچ. وقفي الخطوات اللي فوق، وكلمي شخص تثقين فيه الحين، أو مختص، أو خط مساعدة (<a href="https://findahelpline.com" target="_blank">findahelpline.com</a>). لو حسيتي إنچ مو آمنة مع نفسچ، توجهي لأقرب طوارئ أو اتصلي بالرقم الرسمي للطوارئ بمنطقتچ. هذا مو ضعف، هذا بالضبط الحضور اللي الجزء يحتاجه.</p>
+      </div>
+
+      <h3 style="margin-top:34px;">⚡ المرحلة ب · المطفئون تدخلوا (الخطوة 5)</h3>
+      <div class="card">
+        <p><b>كيف أعرف إني هنا؟</b> سلوك مفاجئ يقطع الإحساس: تجميد وتأجيل، هروب للجوال، ركض ورا المهام، ابتعاد جسدي، انفجار أو صراخ، أو أكل/نوم/تصفح بدون وعي. الجزء ما يفكر، هو يطفي النار بأسرع طريقة.</p>
+        <p><b>القاعدة الأهم:</b> المطفئ مو عدوچ. هو جا لأن الألم كان أكبر من قدرة الباقي. فلا تحاربينه ولا تحاسبينه وقتها، لأن الحرب معه تصعّد الألم اللي تحته.</p>
+      </div>
+
+      <table class="signals">
+        <thead><tr><th>المطفئ</th><th>شنو يسوي</th><th>شنو تسوين الحين</th></tr></thead>
+        <tbody>
+          <tr><td class="pname">⚡ التوتر والانجماد</td><td>تجميد أو هروب للجوال والمهام بدل ما تحسين</td><td>تأريض 5-4-3-2-1، وبعدين <b>خطوة وحدة صغيرة</b> بس. لا تحاولين تنجزين كل اللي تأجل.</td></tr>
+          <tr><td class="pname">🍦 جزء القهر</td><td>ابتعاد جسدي، ورعاية طارئة بعد الانهيار</td><td>خليه ياخذ مسافة آمنة، وسوي فعل رعاية خلال نفس الساعة (ماي، دش، شي تحبينه). لا تفتحين الموضوع وأنتِ منهكة.</td></tr>
+          <tr><td class="pname">🌀 الانفجار</td><td>ينفجر فجأة بعد تراكم بدون تواصل مع النفس</td><td>اطلعي من الموقف 20 دقيقة، زفير طويل، لا ترسلين ولا تقررين شي. بعد ما تهدين، لو الانفجار طاح على أحد (البنات مثلًا) صلّحي بجملة بسيطة بدون جلد ذات: "كنت متضايقة وانفعلت، وهذا مو ذنبك، أنا آسفة."</td></tr>
+        </tbody>
+      </table>
+
+      <div class="cycle-flow">
+        <div class="cycle-box">1️⃣ <b>سمّيه بدون حكم:</b> "هذا جزء مطفئ تدخل، يحاول يوقف الألم." التسمية تفصلچ عنه وتخليچ مو مجرد ردة فعل.</div>
+        <div class="cycle-down">↓</div>
+        <div class="cycle-box">2️⃣ <b>أمّني الموقف أول:</b> لا شي يأذيچ ولا يأذي غيرچ. ابعدي عن اللي يشعل الموضوع، وأوقفي أي قرار أو رسالة.</div>
+        <div class="cycle-down">↓</div>
+        <div class="cycle-box">3️⃣ <b>برّدي الجسم، لا تسكّتيه:</b> زفير طويل، ماي بارد على الوجه واليدين لو تحبين، مشي هادي. الهدف يهدأ الجهاز العصبي، مو تلغين الجزء.</div>
+        <div class="cycle-down">↓</div>
+        <div class="cycle-box">4️⃣ <b>اشكريه:</b> "شكرًا إنك حاولت تحميني." هذا يخفف مقاومته، لأن المطفئ يشتد لما يحس إنه مرفوض.</div>
+        <div class="cycle-down">↓</div>
+        <div class="cycle-box">5️⃣ <b>بعد ما يهدأ: رعاية ثم ترميم:</b> رعاية لنفسچ أول (أكل، راحة، فعل لطيف)، وبعدين إذا تضررت علاقة بسبب اللي صار، ترميم بجملة صغيرة. لا تحللين الموضوع وأنتِ لسا منهكة.</div>
+        <div class="cycle-down">↓</div>
+        <div class="cycle-box">6️⃣ <b>ارجعي للدورة:</b> بعد يوم أو أكثر، لما تكونين هادية، سجلي: "شنو المحفز؟ أي مدير تعب قبل المطفئ؟" هذا يوريچ وين كان ممكن تتدخلين بالخطوة 2 المرة الجاية.</div>
+      </div>
+
+      <div class="quick-grid">
+        <div class="quick-item"><h4>✅ يفيد هنا</h4><p>تبريد الجسم، المسافة الآمنة، الشكر للجزء، الرعاية الفورية، الترميم الصغير.</p></div>
+        <div class="quick-item"><h4>🚫 لا تسوين هنا</h4><p>لوم نفسچ ("أنا فاشلة لأني انفجرت")، إجبار الجزء على السكوت، نقاش كبير وأنتِ منهكة، أو جلسة تحليل وسط العاصفة.</p></div>
+      </div>
+
+      <div class="care">
+        <p><b>ملاحظة:</b> الانجماد المتكرر أو الانفجارات اللي تأثر على بناتچ وعلاقاتچ، أو إنهاك ما يروح بعد أيام، كلها إشارات تستاهل مختص يتابعها معچ، مو تمرين بس. وإذا المطفئ وصل لشي يؤذي جسمچ، وقفي وتواصلي مع أحد فورًا. هذا الجزء اللي يتحرك بسرعة أقوى دليل إنچ تحتاجين دعم حقيقي مو بس أدوات.</p>
+      </div>
+
     </section>
 
     <!-- EMOTIONAL RELEASE -->
@@ -921,7 +1022,7 @@ a{color:var(--accent);}
       <div class="card solution">
         <ul>
           <li>لما يجيچ انقباض الصدر، جربي تسألين: "هل هذا دليل حقيقي إني أقل، أو هو جرح ليلة الزواج يتكلم؟" — الفرق بينهم مهم.</li>
-          <li>تمرين الطفلة (عمر 20): مرّني نفسچ تسألين رأيچ مرتين قبل أي قرار صغير، وتاخذين جوابچ الأول بجدية — نفس الشي اللي تمنيتي حد يسويه لچ.</li>
+          <li>تمرين الطفلة (عمر 24): مرّني نفسچ تسألين رأيچ مرتين قبل أي قرار صغير، وتاخذين جوابچ الأول بجدية — نفس الشي اللي تمنيتي حد يسويه لچ.</li>
           <li>الهدف اللي طلبه الجزء بنفسه ("يصير عندچ هدف بالحياة، مو من ضمنه أمي") خطوة ممتازة — اختاري هدف صغير واحد هالأسبوع ما له علاقة بالمقارنة مع أختچ إطلاقًا.</li>
           <li>نمط تكرر بأكثر من جزء (أم تُوصف بالسيطرة وتفضيل الأخت، زوج يُوصف بالإهمال) يستاهل مساحة آمنة مع معالج نفسي تحكين فيها كل هذا مرة وحدة، بدل ما تتوزع بين جلسات منفصلة.</li>
         </ul>
@@ -1020,7 +1121,7 @@ a{color:var(--accent);}
     <section id="p9">
       <span class="badge">جزء 9 من 11 · مرتبط بجزء 6</span>
       <h2>🍦 جزء القهر</h2>
-      <div class="situation"><b>الموقف:</b> جلسة عن علاقة استُنزفت فيها كثير بعد محاولات متكررة ووعود ما تحققت — من جلسة ذاتية منفصلة قبل ملفات الـdocx، بدون تسجيل الأسئلة بالتفصيل، بس المضمون واضح وقوي.</div>
+      <div class="situation"><b>الموقف:</b> جلسة عن علاقة استُنزفت فيها كثير بعد محاولات متكررة ووعود ما تحققت — من جلسة ذاتية منفصلة، بدون تسجيل الأسئلة بالتفصيل، بس المضمون واضح وقوي.</div>
 
       <h3>💬 أهم ما قاله الجزء</h3>
       <div class="quote2">"اذكرش باللي صار، أخاف إنش تضحين أكثر وتحاولين أكثر."</div>
@@ -1115,8 +1216,9 @@ a{color:var(--accent);}
         <ul>
           <li>"رسالة الطفلة": نفس فكرة رسائل مريم الكبيرة لمريم الصغيرة (جزء 5)، بس هنا وجّهيها لهذي الطفلة الأعمق تحديدًا، بنفس الجمل اللي طلعت بجزء "الوجود": "أحبچ في كل الأحوال، ما فيچ شي غلط."</li>
           <li>تمرين حضور بدون كلام (زي "الشاهد الداخلي" بجزء 3): دقيقتين يوميًا تتخيلين نفسچ تحضنها بدون ما تطلبين منها تتغير أو تهدأ.</li>
+          <li><b>الجلوس الصامت (اللي لاحظتي إنه يخفف عليچ):</b> تقعدين جنبها وتسمعينها وانتوا ساكتين، من 2 إلى 10 دقايق. هذا أهم تمرين لها، لأنها ما تحتاج تبرير ولا شرح، تحتاج تحس إن أحد باقي. الخطوات الكاملة بصفحة Systems.</li>
         </ul>
-        <p><b>جدول الجلسات المقترح:</b> هذا الجزء بالذات يستاهل يكون محور خطة الـ12 أسبوع كلها، مو بس أسبوع وحد — راجعي التحديث بصفحة الخلاصة.</p>
+        <p><b>جدول الجلسات المقترح:</b> هذا الجزء بالذات يستاهل يكون محور خطة الـ12 أسبوع كلها، مو بس أسبوع وحد — راجعي خطة الـ12 أسبوع بصفحة الخلاصة.</p>
         <p><b>علامات التحسن:</b> يقل شعور "لازم أثبت أو أدفع ثمن عشان أستحق الحب" عبر كل الأجزاء الثانية مع بعض، مو بس بهذا الجزء لحاله.</p>
       </div>
     </section>
@@ -1194,17 +1296,7 @@ a{color:var(--accent);}
       </div>
       <h3>📅 خطة التعافي: 12 أسبوع (3 أشهر) موزعة على أيام الأسبوع</h3>
 
-      <div class="care">
-        <h3>🔄 تحديث على الخطة بعد جزء "حنّونو"</h3>
-        <p>جزء "حنّونو" أكّد شي كان متوقّع: هو وجزء "التعلق والخوف" (جزء 1) مرتبطين ببعض — الجزء نفسه قال "لازم تُحلّ جزء التعلق أول" عشان يثق فيچ. عشان كذا عدّلت المرحلة 2 تحت عشان تجمعهم بأسبوع وحد بدل ما تتوزعون، وضفت تمرين "الوزن الذاتي" (إن كلامچ له قيمة بذاته) كتمرين أسبوعي ثابت بالمرحلة 2 و3.</p>
-      </div>
-
-      <div class="care">
-        <h3>🔄 تحديث ثانٍ بعد "الحامي الصغير" و"الطفلة الصغيرة"</h3>
-        <p>هذولا الجزئين كشفوا إن فيه "مركز" واحد (الطفلة الصغيرة) يغذّي أغلب الأجزاء الثانية. عشان كذا عدّلت المرحلة 2 مرة ثانية تحت: صار العمل على "الحامي الصغير + الطفلة الصغيرة" أساس المرحلة كلها (مو أسبوع وحد بس)، وربطيهم بمريم الطايرة والوجود والمقارن وحنّونو أول بأول لأنهم كلهم يتغذون من نفس الجرح. كمان جزء "القهر" الجديد انضم لأسبوع "الوعود المكسورة" لأنه نفس الموضوع بالضبط.</p>
-      </div>
-
-      <div class="card">
+                  <div class="card">
         <p>أنا أقدّر إنچ تحتاجين حوالي <b>12 أسبوع كبداية</b> (مو نهاية). الأجزاء الأثقل (مريم الطايرة، التوتر) غالبًا تحتاج أطول وترافقها مع مختص. الخطة ثابتة الشكل كل أسبوع عشان تصير عادة، ويتغير <b>تركيزها</b> حسب المرحلة. مدة كل يوم: 15-25 دقيقة بالكثير.</p>
       </div>
 
@@ -1213,21 +1305,21 @@ a{color:var(--accent);}
         <tbody>
           <tr><td class="day">السبت</td><td>3 جمل امتنان + فحص جسدي: وين أحس التوتر اليوم؟</td><td>مراجعة "دفتر الأجزاء": أي جزء ظهر اليوم وشنو قال؟</td></tr>
           <tr><td class="day">الأحد</td><td>تنفس 4-7-8 (5 دقائق)</td><td>جلسة IFS ذاتية قصيرة — من المرحلة 2 وفوق: جزء "التعلق" و"حنّونو" سوا بنفس الجلسة</td></tr>
-          <tr><td class="day">الاثنين</td><td>"خطوة اليوم الواحدة": أصغر مهمة ممكنة وتنجزينها</td><td>رسالة قصيرة من "مريم الكبيرة" إلى "مريم الصغيرة" (5 د)</td></tr>
+          <tr><td class="day">الاثنين</td><td>"خطوة اليوم الواحدة": أصغر مهمة ممكنة وتنجزينها</td><td>رسالة قصيرة من "مريم الكبيرة" إلى "مريم الصغيرة" (5 د) + <b>جلوس صامت</b> معها دقيقتين بعد الرسالة</td></tr>
           <tr><td class="day">الثلاثاء</td><td>تأريض 5-4-3-2-1 (وقت أي توتر)</td><td>جلسة المعالج (لو موجودة) أو مراجعة ملاحظات آخر جلسة</td></tr>
           <tr><td class="day">الأربعاء</td><td>تمرين "الوزن الذاتي": اكتبي موقف اليوم وقرري إنه مهم بذاته قبل ما تشرحينه لأحد</td><td>15 دقيقة لعب أو راحة حقيقية مع البنات أو لنفسچ بدون شعور بالذنب</td></tr>
-          <tr><td class="day">الخميس</td><td>مراجعة "دفتر الأدلة المضادة": دليل واحد إنچ تستاهلين</td><td>كتابة حرة 10 دقائق بدون تحرير: كل اللي بخاطرچ</td></tr>
+          <tr><td class="day">الخميس</td><td>مراجعة "دفتر الأدلة المضادة": دليل واحد إنچ تستاهلين</td><td>كتابة حرة 10 دقائق بدون تحرير: كل اللي بخاطرچ <b>أو</b> جلوس صامت مع الجزء (5-10 د) لو الكتابة ثقيلة</td></tr>
           <tr><td class="day">الجمعة</td><td>راحة مقصودة، بدون مهام علاجية</td><td>تلخيص الأسبوع: شنو تعلمت؟ أصعب لحظة؟ شنو أحتاج الأسبوع الجاي؟</td></tr>
         </tbody>
       </table>
 
       <div class="plan-phase">
         <h4>المرحلة 1 · الأسابيع 1-3: الأمان والتأريض</h4>
-        <p>الهدف الوحيد: جسمچ يتعلم إن فيه أمان كافي يهدأ. تسجلين الأجزاء وتلاحظينها بدون أي محاولة "تحل" أو "تغيّر". ممنوع بهالمرحلة مواجهات كبيرة (مع زوجچ أو أمچ) أو قرارات مصيرية. <b>أول أسبوع: احجزي موعد التقييم النفسي</b> (خصوصًا بسبب أجزاء مريم الطايرة والتوتر).</p>
+        <p>الهدف الوحيد: جسمچ يتعلم إن فيه أمان كافي يهدأ. تسجلين الأجزاء وتلاحظينها بدون أي محاولة "تحل" أو "تغيّر". وتبدئين من الأسبوع الأول بـ<b>الجلوس الصامت</b> (دقيقتين بس، شوفي صفحة Systems): تجلسين وتسمعين جزء واحد بدون كلام. ممنوع بهالمرحلة مواجهات كبيرة (مع زوجچ أو أمچ) أو قرارات مصيرية. <b>أول أسبوع: احجزي موعد التقييم النفسي</b> (خصوصًا بسبب أجزاء مريم الطايرة والتوتر).</p>
       </div>
       <div class="plan-phase">
-        <h4>المرحلة 2 · الأسابيع 4-6: التعرف على الأجزاء <span style="font-size:12.5px; color:var(--rose); font-weight:400;">(معدّلة مرتين)</span></h4>
-        <p><b>الأسبوع 4:</b> "التعلق" و"حنّونو" سوا (نفس الجذر، مؤكد من الجزء نفسه). <b>الأسبوع 5:</b> خصصيه لـ"الحامي الصغير" و"الطفلة الصغيرة" معًا — ابدئي بالحامي (لازم يثق أول)، وبعدين افتحي مساحة قصيرة للطفلة بحضور بس بدون ضغط. <b>الأسبوع 6:</b> اربطي "مريم الطايرة"، "الوجود"، و"المقارن" بنفس الطفلة اللي اكتشفتيها الأسبوع اللي قبله — لاحظي التشابه بدل ما تعالجينهم كل وحد لحاله. جزء "القهر" الجديد اشتغلي عليه بنفس وقت "الوعود المكسورة" (نفس الموضوع).</p>
+        <h4>المرحلة 2 · الأسابيع 4-6: التعرف على الأجزاء <span style="font-size:12.5px; color:var(--rose); font-weight:400;"></span></h4>
+        <p><b>الأسبوع 4:</b> "التعلق" و"حنّونو" سوا (نفس الجذر، مؤكد من الجزء نفسه). <b>الأسبوع 5:</b> خصصيه لـ"الحامي الصغير" و"الطفلة الصغيرة" معًا — ابدئي بالحامي (لازم يثق أول)، وبعدين افتحي مساحة قصيرة للطفلة بحضور بس بدون ضغط: هنا يصير <b>الجلوس الصامت</b> الأداة الأساسية (5 دقايق، بدون أسئلة). <b>الأسبوع 6:</b> اربطي "مريم الطايرة"، "الوجود"، و"المقارن" بنفس الطفلة اللي اكتشفتيها الأسبوع اللي قبله — لاحظي التشابه بدل ما تعالجينهم كل وحد لحاله. جزء "القهر" الجديد اشتغلي عليه بنفس وقت "الوعود المكسورة" (نفس الموضوع).</p>
       </div>
       <div class="plan-phase">
         <h4>المرحلة 3 · الأسابيع 7-9: إعادة الصياغة والحدود</h4>
@@ -1257,9 +1349,9 @@ document.querySelectorAll('main section').forEach(sec=>{
   btn.type = 'button';
   btn.textContent = '📋 نسخ محتوى الصفحة';
   btn.addEventListener('click', async ()=>{
-    const clone = sec.cloneNode(true);
-    clone.querySelectorAll('.copybar').forEach(el=>el.remove());
-    const text = clone.innerText.trim();
+    bar.style.display='none';
+    const text = sec.innerText.trim();
+    bar.style.display='';
     try{
       await navigator.clipboard.writeText(text);
     }catch(e){
@@ -1278,15 +1370,28 @@ document.querySelectorAll('main section').forEach(sec=>{
   sec.insertBefore(bar, sec.firstChild);
 });
 
-document.querySelectorAll('nav button').forEach(btn=>{
-  btn.addEventListener('click', ()=>{
-    document.querySelectorAll('nav button').forEach(b=>b.classList.remove('active'));
-    document.querySelectorAll('main section').forEach(s=>s.classList.remove('active'));
-    btn.classList.add('active');
-    document.getElementById(btn.dataset.t).classList.add('active');
-    window.scrollTo(0,0);
-  });
-});
+const navEl=document.getElementById('nav'), menuBtn=document.getElementById('menuBtn'), curTitle=document.getElementById('curTitle');
+function setMenu(open){
+  navEl.classList.toggle('open',open);
+  document.body.classList.toggle('menu-open',open);
+  menuBtn.setAttribute('aria-expanded',open);
+  menuBtn.textContent=open?'✕ إغلاق':'☰ القائمة';
+}
+menuBtn.addEventListener('click',()=>setMenu(!navEl.classList.contains('open')));
+function show(id,updateHash){
+  const btn=document.querySelector('nav button[data-t="'+id+'"]'); const sec=document.getElementById(id);
+  if(!btn||!sec) return;
+  document.querySelectorAll('nav button').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('main section').forEach(s=>s.classList.remove('active'));
+  btn.classList.add('active'); sec.classList.add('active');
+  curTitle.textContent=btn.textContent.trim();
+  setMenu(false); window.scrollTo(0,0);
+  if(updateHash){ try{ history.replaceState(null,'','#'+id); }catch(e){} }
+}
+document.querySelectorAll('nav button').forEach(btn=>btn.addEventListener('click',()=>show(btn.dataset.t,true)));
+window.addEventListener('hashchange',()=>show(location.hash.slice(1),false));
+window.addEventListener('resize',()=>{ if(window.innerWidth>760) setMenu(false); });
+show(location.hash.slice(1)||'intro',false);
 
 document.querySelectorAll('.core-btn').forEach(btn=>{
   btn.addEventListener('click', ()=>{
