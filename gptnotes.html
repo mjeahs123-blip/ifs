@@ -1,0 +1,397 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>مريم — مساحة الرجوع لي</title>
+  <meta name="description" content="مساحة شخصية ناعمة لمريم: الذات، البنات، العلاقة، الأجزاء، المشروع، الروتين، والأرشيف.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
+  <style>
+    *{box-sizing:border-box}html{scroll-behavior:smooth}
+    body{margin:0;background:#fff9fb;color:#493b42;font-family:"Cairo",system-ui,sans-serif;line-height:1.6;font-size:13px;}
+    .bg-orb{position:fixed;border-radius:50%;filter:blur(4px);pointer-events:none;z-index:-1}
+    .orb-1{width:360px;height:360px;background:#f9d9e6;top:-140px;right:-100px;opacity:.65}
+    .orb-2{width:300px;height:300px;background:#f3e5df;bottom:-130px;left:-90px;opacity:.55}
+    .topbar{height:64px;position:sticky;top:0;z-index:30;display:flex;align-items:center;justify-content:space-between;padding:0 20px;background:rgba(255,249,251,.84);backdrop-filter:blur(18px);border-bottom:1px solid #f2dce5}
+    .brand{display:flex;align-items:center;gap:8px}
+    .brand strong{display:block;font-size:15px;color:#6b4154}
+    .brand small{display:block;color:#9d7c8b;font-size:10px}
+    .brand-flower{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:#f5d3df;color:#9a536f;font-size:18px}
+    .top-actions{display:flex;gap:6px}
+    .menu-btn,.ghost,.primary,.soft{border:0;border-radius:10px;padding:6px 12px;font:inherit;cursor:pointer;font-size:12px}
+    .menu-btn,.ghost{background:#fff;border:1px solid #efdce5;color:#7d5d6b}
+    .primary{background:#a95676;color:#fff;box-shadow:0 4px 12px #c47c972c}
+    .soft{background:#f9e8ef;color:#8c4c68}
+    .sidebar{position:fixed;right:0;top:64px;bottom:0;width:220px;padding:16px 12px;background:rgba(255,251,252,.92);border-left:1px solid #f0dce4;z-index:20;overflow:auto}
+    .side-title{font-weight:800;color:#a05673;margin:0 6px 10px;font-size:12px}
+    .nav{width:100%;text-align:right;background:transparent;border:0;border-radius:10px;padding:8px 10px;margin:2px 0;color:#735a64;font:inherit;cursor:pointer;font-size:12px}
+    .nav:hover,.nav.active{background:#f9e6ee;color:#934c6b}
+    .side-note{font-size:10px;color:#a88b97;line-height:1.5;margin:15px 6px;padding-top:12px;border-top:1px solid #f0dfe6}
+    main{margin-right:220px;max-width:1100px;padding:30px 30px 60px;margin-left:auto}
+    .hero{min-height:400px;display:grid;grid-template-columns:1.4fr .7fr;gap:24px;align-items:center}
+    .eyebrow{color:#a95676;font-weight:800;font-size:11px;letter-spacing:.5px}
+    .hero h1,.page-head h1{font-family:"Playfair Display","Cairo",serif;color:#5a3a48;font-size:clamp(28px,4vw,46px);line-height:1.2;margin:8px 0 14px}
+    .hero h1 em{color:#a95676;font-style:normal}
+    .hero p{font-size:14px;color:#745e67;max-width:760px}
+    .hero-actions{display:flex;gap:8px;margin-top:18px}
+    .hero-card{background:linear-gradient(145deg,#fff,#fff0f5);border:1px solid #f0d6e1;border-radius:24px;padding:24px;box-shadow:0 12px 30px #8e526f12}
+    .moon{font-size:32px;color:#b25c7d;margin-bottom:12px}
+    .hero-card span{font-size:11px;color:#9d7b89}
+    .hero-card strong{display:block;font-size:15px;line-height:1.6;margin:6px 0 10px;color:#704456}
+    .hero-card small{color:#a0838d;font-size:11px}
+    .section{margin-top:45px}
+    .section-head{display:flex;justify-content:space-between;align-items:end;gap:15px;margin-bottom:15px}
+    .section h2,.page-head h2{font-size:20px;color:#5d4350;margin:3px 0}
+    .badge{font-size:10px;background:#fff0f4;color:#9d5a73;padding:5px 8px;border-radius:999px}
+    .metric-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+    .metric,.card,.part,.priority,.routine article{background:#fff;border:1px solid #f1dfe6;border-radius:16px;padding:16px;box-shadow:0 6px 20px #8d5a6c05}
+    .metric span{display:block;font-weight:800;color:#744a5c;font-size:12px}
+    .metric b{display:block;letter-spacing:2px;color:#c46c8d;font-size:11px;margin:8px 0}
+    .metric small{color:#927982;font-size:11px}
+    .note{font-size:11px;color:#9a7d87;margin-top:12px}
+    .cycle{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap}
+    .cycle div{background:#fff;border:1px solid #f1dbe4;border-radius:14px;padding:12px 14px;text-align:center;min-width:130px;font-size:12px}
+    .cycle i{color:#b96886;font-style:normal;font-size:18px}
+    .callout,.highlight{background:#fff4f7;border-right:3px solid #c96e8f;border-radius:12px;padding:14px 16px;margin-top:14px;color:#6e505b;font-size:13px}
+    .two-col{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .rose{background:#fff0f5}.cream{background:#fff8ef}
+    .page-head{padding:18px 0 20px;max-width:800px}
+    .page-head h1{font-size:32px}
+    .page-head p{font-size:13px;color:#7e6871}
+    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+    .card h3{margin-top:0;color:#704557;font-size:14px}
+    .card ul,.card ol{padding-right:16px;font-size:12px}
+    .card li{margin:4px 0}
+    .card p{font-size:12px}
+    .prompt-grid,.message-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .prompt-grid label,.message-grid label{display:block;background:#fff;border:1px solid #f1dfe6;border-radius:14px;padding:12px;font-weight:700;color:#795464;font-size:12px}
+    .prompt-grid textarea,.message-grid textarea,.bigtext{width:100%;min-height:90px;margin-top:8px;border:1px solid #efdce5;border-radius:10px;background:#fffafb;padding:10px;font:inherit;color:#4f4148;resize:vertical;font-size:12px}
+    .bigtext{min-height:150px}
+    .checklist{display:grid;gap:8px}
+    .checklist label{background:#fff;border:1px solid #f1dfe6;padding:10px 12px;border-radius:12px;font-size:12px}
+    .checklist input{accent-color:#ad5a79;margin-left:6px}
+    .parts-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+    .part{min-height:130px;font-size:12px}
+    .part b{color:#74465a;font-size:13px}
+    .part p{margin:6px 0;color:#806c74;font-size:11px}
+    .part small{color:#a48a95;font-size:10px}
+    .flow{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;background:#fff;padding:18px;border:1px solid #f1dfe6;border-radius:16px;font-size:12px}
+    .flow span{padding:8px 12px;border-radius:10px;background:#fcebf1;color:#7e4c60}
+    .flow i{color:#b85e7d;font-style:normal}
+    .table{overflow:hidden;border:1px solid #f1dfe6;border-radius:14px;background:#fff;font-size:12px}
+    .table>div{display:grid;grid-template-columns:1fr 2fr 1.5fr;padding:10px 12px;border-bottom:1px solid #f3e5ea}
+    .table>div:last-child{border-bottom:0}
+    .table>div:first-child{background:#fff0f4;color:#7b4a5e;font-weight:bold}
+    .message-box{background:#fff;border:1px dashed #d9a9ba;border-radius:14px;padding:16px;font-size:13px;color:#6d4c5b;margin-top:14px}
+    .priority-stack{display:grid;gap:10px}
+    .priority{display:flex;gap:14px;align-items:flex-start;font-size:12px}
+    .priority>span{width:32px;height:32px;border-radius:50%;display:grid;place-items:center;background:#f9e5ed;color:#9d5672;font-weight:800;flex:none;font-size:12px}
+    .priority b{font-size:13px}
+    .priority p{margin:2px 0;color:#7c6870;font-size:11px}
+    .routine{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+    .routine article span{font-size:22px}
+    .routine article h3{color:#704557;font-size:13px}
+    .routine article p{font-size:11px}
+    .searchbar{display:flex;gap:6px}
+    .searchbar input{flex:1;border:1px solid #efdce5;border-radius:10px;padding:10px;font:inherit;background:#fff;font-size:12px}
+    .results{margin-top:12px;display:grid;gap:8px;font-size:12px}
+    .result{background:#fff;border:1px solid #f0dce4;border-radius:12px;padding:10px}
+    .result small{color:#a0808b;font-size:10px}
+    .source-list{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px}
+    .source-list a{padding:8px 12px;background:#f9e8ef;border-radius:10px;color:#8e4f68;text-decoration:none;font-size:11px}
+    footer{text-align:center;color:#a0838d;font-size:11px;padding:20px}
+    .dark body{background:#241d21;color:#eadde2}
+    .dark .topbar,.dark .sidebar,.dark .card,.dark .metric,.dark .part,.dark .priority,.dark .routine article,.dark .table,.dark .hero-card,.dark .prompt-grid label,.dark .message-grid label,.dark .message-box,.dark .result{background:#2d2429;border-color:#49383f}
+    .dark .hero h1,.dark .page-head h1,.dark h2,.dark h3,.dark .brand strong{color:#f4e6ec}
+    .dark p,.dark small,.dark .page-head p{color:#cdbac2}
+    .dark .nav{color:#d6c0c8}
+    .dark .nav.active{background:#4a3040}
+    .dark .prompt-grid textarea,.dark .message-grid textarea,.dark .bigtext,.dark .searchbar input{background:#241d21;color:#eadde2;border-color:#513b45}
+    .dark .callout,.dark .highlight{background:#3a2730}
+    .dark .metric b{color:#e08dab}
+    @media(max-width:980px){.sidebar{transform:translateX(100%);transition:.25s}.sidebar.open{transform:translateX(0)}main{margin-right:0;padding:20px 15px 50px}.hero{grid-template-columns:1fr}.metric-grid,.grid-3,.parts-grid,.routine{grid-template-columns:1fr 1fr}.topbar{padding:0 15px}}
+    @media(max-width:650px){.hero h1,.page-head h1{font-size:28px}.metric-grid,.grid-3,.parts-grid,.routine,.two-col,.prompt-grid,.message-grid{grid-template-columns:1fr}.cycle{display:grid}.table>div{grid-template-columns:1fr;gap:2px}.table>div:first-child{display:none}.top-actions .primary{display:none}}
+  </style>
+</head>
+<body>
+  <div class="bg-orb orb-1"></div><div class="bg-orb orb-2"></div>
+  <header class="topbar">
+    <button class="menu-btn" id="menuBtn">☰</button>
+    <div class="brand"><span class="brand-flower">✿</span><div><strong>مريم</strong><small>مساحة الرجوع لي</small></div></div>
+    <div class="top-actions"><button class="ghost" id="themeBtn">☼</button><button class="primary" id="saveBtn">حفظ</button></div>
+  </header>
+
+  <aside class="sidebar" id="sidebar">
+    <div class="side-title">مساحتي</div>
+    <button class="nav active" data-page="home">🏡 الرئيسية</button>
+    <button class="nav" data-page="me">🌷 أنا</button>
+    <button class="nav" data-page="girls">🎀 البنات</button>
+    <button class="nav" data-page="relationship">🤍 العلاقة</button>
+    <button class="nav" data-page="parts">🧩 أجزائي</button>
+    <button class="nav" data-page="body">🌿 جسمي وراحتي</button>
+    <button class="nav" data-page="work">✨ مشروعي وحياتي العملية</button>
+    <button class="nav" data-page="priorities">🪞 الأولويات</button>
+    <button class="nav" data-page="messages">💌 الرسائل والحدود</button>
+    <button class="nav" data-page="routines">🌙 الروتين</button>
+    <button class="nav" data-page="archive">📚 الأرشيف</button>
+    <div class="side-note">هذا الموقع للاستكشاف والتنظيم، وليس تشخيصًا أو بديلًا عن العلاج المهني.</div>
+  </aside>
+
+  <main id="app"></main>
+
+  <template id="home">
+    <section class="hero">
+      <div>
+        <span class="eyebrow">مساحة خاصة جدًا</span>
+        <h1>مو مشروع إصلاح مريم.<br><em>مشروع بناء حياة مريم.</em></h1>
+        <p>المحادثات اللي كتبتيها خلال الشهور ما كانت مشتتة مثل ما تبدو. فيها خيط واحد يتكرر: <b>أبي أرجع لنفسي، من غير ما أعيش طول الوقت في مراقبة الآخرين أو إصلاح العلاقة أو إثبات قيمتي.</b></p>
+        <div class="hero-actions"><button class="primary" data-go="priorities">أبي أعرف شنو أولوياتي</button><button class="soft" data-go="me">أبي أرجع لي</button></div>
+      </div>
+      <div class="hero-card">
+        <div class="moon">☾</div><span>جملة اليوم</span>
+        <strong>أنا أقدر أبني حياة أحبها<br>من غير ما أحتاج أثبت أني أفضل من أحد.</strong>
+        <small>إذا ظهرت مقارنة، اسألي: «شنو الشيء اللي أريده أنا حتى لو ما كانت هي موجودة؟»</small>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head"><div><span class="eyebrow">قراءة الملفات</span><h2>شنو أخذ مساحة كبيرة من حياتچ؟</h2></div><span class="badge">مؤشر حضور، مو ساعات فعلية</span></div>
+      <div class="metric-grid">
+        <article class="metric"><span>العلاقة والزواج</span><b>██████████</b><small>الأكثر حضورًا في اللغة والمحادثات؛ تكرر موضوع العلاقة والزواج والإهمال والحدود والرسائل.</small></article>
+        <article class="metric"><span>القيمة والمقارنة</span><b>█████████░</b><small>المقارنة، الأخت، الاستحقاق، القبول، والخوف من أن تكوني «أقل» تشكل محورًا متكررًا.</small></article>
+        <article class="metric"><span>الجهاز العصبي والذات</span><b>████████░░</b><small>الخدر، التوتر، الانطفاء، العودة للجسم، IFS، EMDR، والتهدئة تظهر بكثافة.</small></article>
+        <article class="metric"><span>الأمومة والبنات</span><b>██████░░░░</b><small>حب ومسؤولية ونوم ومساعدة وإحساس بالذنب، مع رغبة واضحة ألا تضيع مريم داخل دور الأم.</small></article>
+        <article class="metric"><span>العمل والمشروع</span><b>█████░░░░░</b><small>مشروع الليزر، التصميم، التصوير، المنتجات، التسويق، والرغبة في بناء استقلال وحياة خاصة.</small></article>
+        <article class="metric"><span>الذات والهوايات</span><b>████░░░░░░</b><small>موجودة، لكن غالبًا تظهر كشيء تريدين استعادته بعد أن يهدأ الضغط، لا كمركز ثابت للحياة.</small></article>
+      </div>
+      <p class="note">مهم: هذه قراءة لكثافة الموضوعات في الملفات، وليست قياسًا علميًا لعدد الساعات. ما نعرفه يقينًا هو أن العلاقة + القيمة/المقارنة + التنظيم الداخلي أخذت مساحة ذهنية كبيرة جدًا.</p>
+    </section>
+
+    <section class="section">
+      <div class="section-head"><div><span class="eyebrow">الخيط المشترك</span><h2>الدائرة التي تتكرر</h2></div></div>
+      <div class="cycle">
+        <div>محفّز<br><small>إهمال / وعد / مقارنة / رد بارد</small></div><i>↓</i>
+        <div>مراقبة وشرح<br><small>أبي أفهم، أبي أوصل، أبي أثبت</small></div><i>↓</i>
+        <div>ضغط داخلي<br><small>أنا أقل؟ أنا ثقيلة؟ لازم أصلح</small></div><i>↓</i>
+        <div>استنزاف<br><small>قهر / تجمد / هروب / انطفاء</small></div><i>↓</i>
+        <div>رجوع للبحث عن الأمان<br><small>ثم تبدأ الدائرة من جديد</small></div>
+      </div>
+      <div class="callout"><b>التدخل الجديد:</b> قبل ما تتحولين إلى مديرة للعلاقة أو محققة أو آلة مقارنة، هدّي الجسم → سمّي الشعور → اسألي شنو احتياجي أنا → اختاري أصغر خطوة.</div>
+    </section>
+
+    <section class="section two-col">
+      <article class="card rose"><span class="eyebrow">الوجهة</span><h3>انشراحة الصدر</h3><p>مو معناها إن كل شيء ينحل. معناها أن وجود البنات، الزوج، الناس، والماضي ما يعود يلغي وجودچ. عندچ مركز داخلي ترجعين له.</p><button class="soft" data-go="body">روتين الرجوع للجسم</button></article>
+      <article class="card cream"><span class="eyebrow">قاعدة الموقع</span><h3>مو كل رغبة = مهمة اليوم</h3><p>المقارنة ممكن تكشف رغبة حقيقية، لكن الرغبة تحتاج ترتيب. نختار ما يخدم حياتچ الآن، ونترك الباقي في قائمة «لاحقًا» بدون جلد.</p><button class="soft" data-go="priorities">ترتيب الأولويات</button></article>
+    </section>
+  </template>
+
+  <template id="me">
+    <section class="page-head"><span class="eyebrow">أنا</span><h1>مريم خارج أدوارها</h1><p>هذه الصفحة مو عن كونچ أم أو زوجة أو بنت أو أخت أو صاحبة مشروع. هذه عن الإنسانة اللي وراء كل هذا.</p></section>
+    <div class="grid-3">
+      <article class="card"><h3>🌷 أشياء تظهر كجزء من ذاتچ</h3><ul><li>التصميم والعمل اليدوي والتفاصيل.</li><li>التصوير، وظهر في الملفات أنه أحيانًا صار استنزافًا بدل متعة.</li><li>مشروع الليزر كمساحة استقلال وإبداع.</li><li>الكتابة وصفحات الصباح والتأمل الذاتي.</li><li>القهوة الهادئة، المشي، العناية، القراءة/المحتوى الهادئ، ومساحات البيت.</li></ul></article>
+      <article class="card"><h3>🫧 الشيء الذي ضاع</h3><p>ليس واضحًا من الملفات أنچ فقدتِ «هواية واحدة» بعينها. الأوضح أن وقتچ الداخلي صار يذهب إلى العلاقة، المقارنة، التفكير، التهدئة، ورعاية الآخرين. لذلك استعادة الذات تحتاج مساحة يومية لا تعتمد على مزاج الآخرين.</p></article>
+      <article class="card"><h3>🪞 الهوية الجديدة</h3><p>بدل «أحتاج أن أصير مثلها» → «أنا أتعلم ماذا أحب».<br>بدل «لازم أثبت قيمتي» → «أبني حياة تناسبني».<br>بدل «لازم أصلح كل شيء» → «أختار نظامًا صغيرًا وأكرره».</p></article>
+    </div>
+    <section class="section"><div class="section-head"><h2>دفتر «شنو أبي؟»</h2><span class="badge">اكتبيه بدون رقابة</span></div>
+      <div class="prompt-grid">
+        <label>لو ما كانت أي امرأة أقارن نفسي فيها موجودة، شنو الحياة اللي أبيها؟<textarea data-key="want-life"></textarea></label>
+        <label>شنو الأشياء اللي تعطيني إحساس «أنا موجودة»؟<textarea data-key="alive"></textarea></label>
+        <label>شنو شيء صغير أبي أسويه هذا الأسبوع فقط لأني أححبه؟<textarea data-key="joy"></textarea></label>
+      </div>
+    </section>
+  </template>
+
+  <template id="girls">
+    <section class="page-head"><span class="eyebrow">البنات</span><h1>الأمومة بدون اختفاء مريم</h1><p>حب البنات واضح جدًا في الملفات، لكن واضح أيضًا أن الأمومة أحيانًا تتحول إلى حمل زائد وذنب وتقديم الآخرين على نفسك.</p></section>
+    <div class="highlight"><b>قاعدة:</b> البنات جزء من حياتچ، مو كل حياتچ. راحتچ ليست أنانية؛ هي مورد تحتاجه الأمومة.</div>
+    <div class="grid-3">
+      <article class="card"><h3>🎀 احتياجات البنات</h3><ul><li>وقت اتصال حقيقي، حتى لو قصير.</li><li>روتين نوم أكثر ثباتًا عندما يكون ذلك مناسبًا لعمرهن.</li><li>لعب وحنان ووجود، وليس «أم مثالية».</li><li>مساعدة من الآخرين عند الإرهاق بدل حمل كل شيء وحدچ.</li></ul></article>
+      <article class="card"><h3>🤍 احتياجات مريم كأم</h3><ul><li>نوم وراحة.</li><li>وقت منفرد لا يخدم أحدًا.</li><li>مساحة جسدية خاصة.</li><li>تقليل الشعور أن كل شيء عاجل.</li></ul></article>
+      <article class="card"><h3>🚫 الشيء الذي نخففه</h3><p>الذنب الذي يقول: «إذا أخذت وقتًا لنفسي فأنا أقصر». الملفات نفسها تحتوي فكرة عكسية: البيت قد ينتظر، وطاقة الأم أهم.</p></article>
+    </div>
+    <section class="section"><h2>خطة أسبوعية بسيطة للبنات</h2><div class="checklist">
+      <label><input type="checkbox" data-check="girls-1"> 15 دقيقة اتصال/لعب بلا هاتف</label>
+      <label><input type="checkbox" data-check="girls-2"> وقت راحة لمريم بمساعدة شخص آخر إن أمكن</label>
+      <label><input type="checkbox" data-check="girls-3"> شيء واحد ممتع مع البنات بدون تحويله إلى مهمة</label>
+      <label><input type="checkbox" data-check="girls-4"> يوم لا أحاول فيه أن يكون البيت كاملًا</label>
+    </div></section>
+  </template>
+
+  <template id="relationship">
+    <section class="page-head"><span class="eyebrow">العلاقة</span><h1>أوقف مطاردة العلاقة… وابدأ تقييمها</h1><p>الملفات تصف سنوات من محاولة الوصول، الشرح، الخلاف، الإهمال، والعودة للدائرة. الهدف الجديد ليس «شنو أخليه يحبني؟» بل «شنو شكل العلاقة التي أقبل أن أعيش فيها؟»</p></section>
+    <div class="grid-3">
+      <article class="card"><h3>🤍 احتياجچ الأساسي</h3><p>الحب، الاحتواء، القبول، أن تكوني مختارة ومسموعة، وأمان. هذه الاحتياجات ظهرت تحت المقارنة نفسها، لا في الزواج فقط.</p></article>
+      <article class="card"><h3>🧱 الحد الصحي</h3><p>مو لازم الطرف الآخر يقتنع بأنچ «صح» حتى يكون شعورچ صحيحًا. قولي احتياجًا محددًا مرة، وراقبي الفعل. الاحترام والخصوصية وحدود الأهل أمثلة على أشياء يمكن تقييمها بسلوك ملموس.</p></article>
+      <article class="card"><h3>🪶 نجاحچ الجديد</h3><p>مو إن حسين يسكت أو يقتنع. النجاح أنچ تقدرين توقفين النقاش، ما تبررين 10 مرات، وما تجعلين ردّه مقياسًا لقيمتچ.</p></article>
+    </div>
+    <section class="section"><div class="section-head"><h2>اختبار الواقع بدل اختبار الحب</h2></div>
+      <div class="table">
+        <div><b>الشيء</b><b>السؤال</b><b>الدليل</b></div>
+        <div><span>الاحترام</span><span>هل أُعامل باحترام حتى وقت الخلاف؟</span><span>سلوك متكرر، لا وعود.</span></div>
+        <div><span>المبادرة</span><span>هل العلاقة لها طرفان؟</span><span>أفعال، لا اعتذارات فقط.</span></div>
+        <div><span>الحدود</span><span>هل خصوصيتنا وكرامتي محمية؟</span><span>موقف واضح عند التجاوز.</span></div>
+        <div><span>الإصلاح</span><span>هل يوجد تغيير بعد المشكلة؟</span><span>تغيير يمكن ملاحظته.</span></div>
+      </div>
+    </section>
+    <section class="section"><h2>رسالة قصيرة قبل أي نقاش</h2><div class="message-box">«هذا الشيء يضايقني وأحتاج منك كذا. وضحت لك اللي أحتاجه، وأنا تعبت. إذا عندنا خطوات عملية نتفق عليها نقدر نتكلم بوقت أهدأ.»</div></section>
+  </template>
+
+  <template id="parts">
+    <section class="page-head"><span class="eyebrow">IFS</span><h1>أجزائي: ما أبي أطرد أي جزء</h1><p>الخريطة هنا مبنية على الأجزاء والأوصاف التي ظهرت في المحادثات. هي أداة استكشاف، وليست تشخيصًا سريريًا.</p></section>
+    <div class="parts-grid">
+      <article class="part"><b>💙 التعلّق والخوف</b><p>يراقب البعد ويدفع للتواصل قبل الراحة.</p><small>الجسم: الحلق والصدر.</small></article>
+      <article class="part"><b>🛡️ الحذر</b><p>يستبق ردود الفعل ويحاول حمايتچ من الخيبة.</p><small>الجسم: القلب/الرقبة/الظهر/الرأس.</small></article>
+      <article class="part"><b>🕊️ مريم الطايرة</b><p>تسرح، تملأ الوقت أو تهرب من الإحساس الثقيل.</p><small>الجسم: الظهر/الذراعات/الرقبة.</small></article>
+      <article class="part"><b>⚡ التوتر والانجماد</b><p>يدفع للإنجاز أو يجمّد عند الضغط.</p><small>علامة: رجفة/اندفاع.</small></article>
+      <article class="part"><b>🌫️ الوجود</b><p>يحاول إثبات الوجود والاستحقاق بالفعل المستمر.</p></article>
+      <article class="part"><b>💔 الوعود المكسورة</b><p>يراقب الوعد ونتيجته وينتظر الخيبة.</p><small>الجسم: الظهر والصدر.</small></article>
+      <article class="part"><b>⚖️ المقارن</b><p>يقيس القيمة عبر مقارنة الحياة بالآخرين; يمكن تحويله إلى بوصلة احتياجات.</p><small>الجسم: انقباض الصدر.</small></article>
+      <article class="part"><b>🔥 حنّونو</b><p>يبرر ويتواصل ويشرح قبل أن يسمح بالراحة.</p><small>الجسم: الرقبة/الحلق/الظهر.</small></article>
+      <article class="part"><b>🍦 القهر</b><p>يحمل شعور الظلم والاستنزاف، ثم يطلب رعاية طارئة بعد الانهيار.</p></article>
+      <article class="part"><b>🛡️ الحامي الصغير</b><p>يبحث عن الحب والاهتمام ويحاول منع الوحدة.</p></article>
+      <article class="part"><b>🧸 الطفلة الصغيرة</b><p>الجذر المحتمل: «ليش ما أحد يحبني زي ما أنا؟» والخوف من الترك ووجود شيء غلط.</p></article>
+      <article class="part"><b>📢 صرّاخ</b><p>حارس الحركة: يرفع الإنذار حتى تتحرك الحياة، لكن الضغط قد يزيد التجمّد.</p></article>
+    </div>
+    <section class="section"><h2>الخريطة الجديدة</h2><div class="flow"><span>مقارنة</span><i>→</i><span>رغبة/ألم</span><i>→</i><span>ضغط لإصلاح كل شيء</span><i>→</i><span>جزء يرفض المطالب</span><i>→</i><span>غضب/تجمّد</span></div><div class="callout"><b>التغيير:</b> المقارن لا يحتاج يختفي. وظيفته الجديدة: «لاحظي ما الذي حرّك فيچ رغبة، ثم اسألي هل هي رغبتچ؟ هل هي أولوية؟ وما أصغر خطوة؟»</div></section>
+  </template>
+
+  <template id="body">
+    <section class="page-head"><span class="eyebrow">الجسم والراحة</span><h1>انشراحة الصدر تبدأ من الجسم</h1><p>في الملفات تكرر أن التفكير والتحليل وحدهما لا يكفيان. عندما يصير الجسم في استنفار أو انطفاء، الأولوية تهدئة وحضور قبل حل المشكلة.</p></section>
+    <div class="grid-3">
+      <article class="card"><h3>🌿 5 دقائق رجوع</h3><ol><li>قدميچ على الأرض.</li><li>لاحظي 5 أشياء تشوفينها.</li><li>سمّي شعورًا واحدًا.</li><li>لاحظي مكانه في الجسم بدون تغييره.</li><li>اختاري حاجة صغيرة: ماء/أكل/نوم/حضن/مشي/هدوء.</li></ol></article>
+      <article class="card"><h3>🌙 قبل النوم</h3><ul><li>إضاءة خافتة.</li><li>كتابة سريعة لما في الرأس.</li><li>تمدد بسيط.</li><li>لمسة دافئة على الصدر أو البطن.</li><li>جملة: «ما يحتاج أحل أي شيء الليلة.»</li></ul></article>
+      <article class="card"><h3>🫶 التنظيم المشترك</h3><p>حضن، ضحك، شخص آمن، جلسة هادئة، حيوان أليف، مكالمة قصيرة، أو وجود لطيف مع البنات — أشياء تساعد على الاتصال بدون تحويلها إلى مشروع علاجي.</p></article>
+    </div>
+    <section class="section"><h2>وقت الانطفاء</h2><div class="highlight">إذا كنتِ منهكة جدًا، لا تعاقبين نفسك بالرياضة القوية أو قائمة مهام ضخمة. الراحة أولًا، ثم حركة لطيفة: مشي خفيف، تمدد، تأرجح، لمس لطيف، أو خروج للطبيعة.</div></section>
+  </template>
+
+  <template id="work">
+    <section class="page-head"><span class="eyebrow">الحياة العملية</span><h1>مشروع الليزر جزء من مشروع أكبر: حياة مريم</h1><p>الملفات لا تتعامل مع المشروع كآلة إثبات قيمة. الأفضل أن يصير نظامًا صغيرًا قابلًا للاستمرار.</p></section>
+    <div class="grid-3">
+      <article class="card"><h3>💰 أول 90 يوم</h3><ul><li>منتجات قليلة.</li><li>جودة عالية.</li><li>اختبار السوق.</li><li>3 خطوط مقترحة: أطفال ومواليد / مناسبات / منزل وتنظيم.</li></ul></article>
+      <article class="card"><h3>📸 مهاراتچ</h3><p>التصوير والتصميم والعمل اليدوي موجودة في تاريخچ، لكن لازم ننتبه: العطاء للآخرين لا يتحول تلقائيًا إلى التزام مجاني أو استنزاف.</p></article>
+      <article class="card"><h3>🧠 قاعدة الإنتاج</h3><p>مو «أنشر يوميًا مهما كان». بل: يوم محدد للإنتاج، يوم للتصوير، وقت للتسويق، ووقت لا علاقة له بالعمل.</p></article>
+    </div>
+    <section class="section"><h2>لوحة المشروع</h2><div class="checklist">
+      <label><input type="checkbox" data-check="work-1"> اخترت 3 منتجات أساسية فقط</label>
+      <label><input type="checkbox" data-check="work-2"> كتبت سعر التكلفة والربح</label>
+      <label><input type="checkbox" data-check="work-3"> جهزت صورًا بسيطة للمنتجات</label>
+      <label><input type="checkbox" data-check="work-4"> حددت وقتًا للعمل لا يتعدى طاقتي</label>
+      <label><input type="checkbox" data-check="work-5"> أبقيت يومًا/وقتًا بلا مشروع</label>
+    </div></section>
+  </template>
+
+  <template id="priorities">
+    <section class="page-head"><span class="eyebrow">الأولويات</span><h1>شلون أقلل الأشياء اللي ضيعت وقتي؟</h1><p>المشكلة ليست أنچ «تسوين أشياء كثيرة» فقط. بعض الأشياء تسحب انتباهچ لأنچ تحاولين منها الحصول على الأمان: مراقبة، شرح، مقارنة، إعادة محادثات، تحليل، انتظار رد.</p></section>
+    <div class="priority-stack">
+      <div class="priority p1"><span>01</span><div><b>مريم نفسها</b><p>النوم، الجسم، العلاج المهني، تهدئة الاستنفار، مساحة يومية خاصة، وعدم تحويل الشفاء إلى دوام كامل.</p></div></div>
+      <div class="priority p2"><span>02</span><div><b>البنات</b><p>الاحتياجات الأساسية والاتصال والحضور، مع توزيع الحمل بدل الاستنزاف.</p></div></div>
+      <div class="priority p3"><span>03</span><div><b>العلاقة</b><p>تقييم السلوك والحدود بدل المطاردة والشرح المتكرر. لا تحاولي حل الزواج كل يوم.</p></div></div>
+      <div class="priority p4"><span>04</span><div><b>الدخل/المشروع</b><p>نظام صغير ثابت يبني استقلالًا بدون أن يصير اختبارًا لقيمتچ.</p></div></div>
+      <div class="priority p5"><span>05</span><div><b>الناس والمقارنات</b><p>من «ملف العمل» إلى «إشارة»: آخذ الرغبة المفيدة وأترك المحاكمة.</p></div></div>
+    </div>
+    <section class="section"><h2>قانون 20 دقيقة</h2><p>قبل أي رسالة طويلة، نقاش، تفتيش، مقارنة أو قرار كبير: <b>20 دقيقة بدون فعل</b>. هدّي الجسم، اكتبي الشعور، ثم اسألي: «شنو أحتاج أنا الآن؟» إذا بقي الموضوع مهمًا بعد الهدوء، اختاري خطوة واحدة.</p></section>
+    <section class="section"><h2>قائمة «ليس الآن»</h2><textarea class="bigtext" data-key="not-now" placeholder="أشياء مهمة، لكن مو مهمة اليوم..."></textarea></section>
+  </template>
+
+  <template id="messages">
+    <section class="page-head"><span class="eyebrow">الرسائل والحدود</span><h1>قبل لا أطرش… أرجع لي</h1><p>هذه الصفحة مصممة للمسودة التي لا تحتاجين إرسالها فورًا. اكتبي، اتركيها، ثم قرري.</p></section>
+    <div class="message-grid">
+      <label>وش صار؟<textarea data-key="msg-event"></textarea></label>
+      <label>شنو أحس في جسمي؟<textarea data-key="msg-body"></textarea></label>
+      <label>شنو أبي فعلًا؟<textarea data-key="msg-need"></textarea></label>
+      <label>هل أحتاج أرسل؟ أم أحتاج أهدأ؟<textarea data-key="msg-choice"></textarea></label>
+    </div>
+    <div class="message-box">قاعدة: جملة واحدة واضحة أفضل من 10 تفسيرات. إذا ما في خطوة عملية جديدة، لا تحتاجين تعيدين المحادثة فقط عشان تثبتين أن ألمچ حقيقي.</div>
+    <section class="section"><h2>نماذج قصيرة</h2><div class="grid-3">
+      <article class="card"><h3>إيقاف نقاش</h3><p>«وضحت اللي أحتاجه، وأنا تعبت. بوقف النقاش الحين، وإذا عندنا خطوة عملية نرجع لها بوقت أهدأ.»</p></article>
+      <article class="card"><h3>حد مع الآخرين</h3><p>«ما أحب أتكلم في هذا الموضوع.» ثم تغيير الموضوع. بدون ملف دفاع من 12 صفحة.</p></article>
+      <article class="card"><h3>رد على المقارنة</h3><p>«شفت شيء عندها حرّك رغبة فيني. شنو الرغبة؟ وهل هي فعلًا رغبتي؟»</p></article>
+    </div></section>
+  </template>
+
+  <template id="routines">
+    <section class="page-head"><span class="eyebrow">الروتين</span><h1>روتين مريم الواقعي</h1><p>مو جدول مثالي. ثلاث نقاط ارتكاز تمنع اليوم من أن يصير كله ردود فعل.</p></section>
+    <div class="routine">
+      <article><span>☀️</span><h3>بداية اليوم</h3><p>ماء + صفحة صباحية قصيرة + سؤال واحد: «شنو أهم شيء لي اليوم؟» + حركة بسيطة/مشي إن أمكن.</p></article>
+      <article><span>🌷</span><h3>منتصف اليوم</h3><p>10 دقائق مريم: قهوة بهدوء، عناية، قراءة، مشروع، أو جلسة بلا خدمة لأحد. شيء يذكّرچ أنچ موجودة.</p></article>
+      <article><span>🌙</span><h3>نهاية اليوم</h3><p>تفريغ سريع + إضاءة خافتة + تمدد + «ما يحتاج أحل أي شيء الليلة.»</p></article>
+    </div>
+    <section class="section"><h2>تشييك يومي</h2><div class="checklist">
+      <label><input type="checkbox" data-check="routine-1"> شربت ماء وأكلت بشكل كافٍ</label>
+      <label><input type="checkbox" data-check="routine-2"> أخذت 10 دقائق لي</label>
+      <label><input type="checkbox" data-check="routine-3"> تحركت حركة لطيفة</label>
+      <label><input type="checkbox" data-check="routine-4"> ما دخلت نقاشًا وأنا في ذروة الانفعال</label>
+      <label><input type="checkbox" data-check="routine-5"> سكرت اليوم بدل تحليل نفسي إلى ما لا نهاية</label>
+    </div></section>
+  </template>
+
+  <template id="archive">
+    <section class="page-head"><span class="eyebrow">الأرشيف</span><h1>كل محادثاتچ في مكان واحد</h1><p>الملفات الأصلية موجودة داخل مجلد <code>archive/</code>. هذا الموقع يضيف فوقها طبقة تنظيمية، حتى ما تضيع التفاصيل داخل النص الطويل.</p></section>
+    <div class="searchbar"><input id="archiveSearch" placeholder="ابحثي: أختي، زوجي، ليزر، نوم، IFS، بناتي..."><button class="primary" id="searchBtn">بحث</button></div>
+    <div id="searchResults" class="results"></div>
+    <div class="source-list">
+      <a href="archive/conversation-1.txt" target="_blank">📄 المحادثة الأولى</a>
+      <a href="archive/conversation-2.txt" target="_blank">📄 المحادثة الثانية</a>
+      <a href="archive/conversation-3.txt" target="_blank">📄 المحادثة الثالثة</a>
+    </div>
+  </template>
+
+  <footer>صُمم لمريم — بلغة ناعمة، وبمنطق واحد: <b>ألاحظ → أهدّئ → أسمع → أختار.</b></footer>
+
+  <script>
+    const app=document.getElementById("app"), sidebar=document.getElementById("sidebar");
+    const pages=["home","me","girls","relationship","parts","body","work","priorities","messages","routines","archive"];
+    const saved=JSON.parse(localStorage.getItem("mariam-soft-life")||"{}");
+    function save(){localStorage.setItem("mariam-soft-life",JSON.stringify(saved));}
+    function render(page="home"){
+      const t=document.getElementById(page);
+      app.innerHTML=t?t.innerHTML:"";
+      document.querySelectorAll(".nav").forEach(n=>n.classList.toggle("active",n.dataset.page===page));
+      document.querySelectorAll("[data-go]").forEach(b=>b.onclick=()=>render(b.dataset.go));
+      hydrate();
+      window.scrollTo({top:0,behavior:"smooth"});
+      sidebar.classList.remove("open");
+      if(page==="archive") setupSearch();
+    }
+    function hydrate(){
+      document.querySelectorAll("textarea[data-key]").forEach(x=>{x.value=saved[x.dataset.key]||"";x.addEventListener("input",()=>{saved[x.dataset.key]=x.value;save()})});
+      document.querySelectorAll("input[data-check]").forEach(x=>{x.checked=!!saved[x.dataset.check];x.addEventListener("change",()=>{saved[x.dataset.check]=x.checked;save()})});
+    }
+    document.querySelectorAll(".nav").forEach(n=>n.addEventListener("click",()=>render(n.dataset.page)));
+    document.getElementById("menuBtn").onclick=()=>sidebar.classList.toggle("open");
+    document.getElementById("themeBtn").onclick=()=>{document.documentElement.classList.toggle("dark");localStorage.setItem("mariam-theme",document.documentElement.classList.contains("dark")?"dark":"light")};
+    document.getElementById("saveBtn").onclick=()=>{save();alert("انحفظت ملاحظاتچ على هذا الجهاز 🤍")};
+    if(localStorage.getItem("mariam-theme")==="dark")document.documentElement.classList.add("dark");
+
+    async function setupSearch(){
+     const input=document.getElementById("archiveSearch"), box=document.getElementById("searchResults"), btn=document.getElementById("searchBtn");
+     async function go(){
+       const q=input.value.trim().toLowerCase(); box.innerHTML="";
+       if(!q){box.innerHTML='<div class="result">اكتبي كلمة للبحث داخل الأرشيف، مثل: أختي، زوجي، ليزر، بناتي، نوم، مقارنة...</div>';return}
+       const files=["conversation-1.txt","conversation-2.txt","conversation-3.txt"];
+       for(const f of files){
+         try{
+           const text=(await fetch("archive/"+f).then(r=>r.text()));
+           const low=text.toLowerCase(); let start=0,count=0;
+           while((start=low.indexOf(q,start))>=0 && count<4){
+             const a=Math.max(0,start-130),b=Math.min(text.length,start+260);
+             const snippet=text.slice(a,b).replace(/\n+/g," ");
+             const d=document.createElement("div");d.className="result";
+             d.innerHTML="<b>"+f+"</b><br><span>"+escapeHtml(snippet)+"</span>";
+             box.appendChild(d);start+=q.length;count++;
+           }
+         }catch(e){}
+       }
+       if(!box.children.length)box.innerHTML='<div class="result">ما لقيت هالكلمة في الأرشيف.</div>';
+     }
+     btn.onclick=go; input.addEventListener("keydown",e=>{if(e.key==="Enters")go()});
+     box.innerHTML='<div class="result">اكتبي كلمة للبحث داخل الأرشيف.</div>';
+    }
+    function escapeHtml(s){return s.replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]))}
+    render("home");
+  </script>
+</body>
+</html>
