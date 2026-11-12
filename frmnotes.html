@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>🌸 بيت مريم</title>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#fff5f8; --card:#ffffff; --pink:#f7a8c4; --pink2:#fbd3e1; --pink3:#fde8ef;
+  --rose:#d6578a; --ink:#4a2f3c; --soft:#8b6677; --mint:#cfeee3; --lav:#e9defa; --sun:#fff0c9;
+  --shadow:0 8px 24px rgba(214,87,138,.12);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Tajawal','Segoe UI',Tahoma,sans-serif;background:linear-gradient(180deg,#fff5f8,#fdeaf2 60%,#f9e2ef);color:var(--ink);line-height:1.85;min-height:100vh;padding-bottom:70px}
+header{padding:22px 16px 8px;text-align:center}
+header h1{font-size:26px;color:var(--rose)}
+header p{color:var(--soft);font-size:14px}
+nav{position:sticky;top:0;z-index:10;background:rgba(255,245,248,.92);backdrop-filter:blur(8px);padding:10px 8px;display:flex;gap:8px;overflow-x:auto;border-bottom:1px solid var(--pink2);scrollbar-width:none}
+nav::-webkit-scrollbar{display:none}
+nav button{flex:0 0 auto;border:none;background:var(--pink3);color:var(--rose);font:inherit;font-size:14px;padding:8px 14px;border-radius:999px;cursor:pointer;white-space:nowrap}
+nav button.on{background:var(--rose);color:#fff;box-shadow:var(--shadow)}
+main{max-width:820px;margin:0 auto;padding:14px}
+.page{display:none;animation:fade .3s}
+.page.on{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+h2{font-size:22px;color:var(--rose);margin:10px 0 4px}
+h3{font-size:17px;color:var(--rose);margin:0 0 6px}
+.lead{color:var(--soft);margin-bottom:12px}
+.card{background:var(--card);border-radius:22px;padding:16px;margin:12px 0;box-shadow:var(--shadow);border:1px solid var(--pink3)}
+.card.mint{background:linear-gradient(135deg,#fff,var(--mint))}
+.card.lav{background:linear-gradient(135deg,#fff,var(--lav))}
+.card.sun{background:linear-gradient(135deg,#fff,var(--sun))}
+.card.rose{background:linear-gradient(135deg,#fff,var(--pink3))}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+.chip{display:inline-block;background:var(--pink3);color:var(--rose);border-radius:999px;padding:2px 12px;font-size:13px;margin:2px}
+ul{padding-right:20px;margin:6px 0}
+li{margin:4px 0}
+.btn{border:none;background:var(--rose);color:#fff;font:inherit;padding:9px 18px;border-radius:999px;cursor:pointer}
+.btn.ghost{background:var(--pink3);color:var(--rose)}
+.say{background:var(--pink3);border-right:4px solid var(--rose);border-radius:12px;padding:8px 12px;margin:8px 0;font-weight:500}
+.small{font-size:13px;color:var(--soft)}
+.warn{background:#fff1f1;border:1px dashed #e58a9d;border-radius:16px;padding:12px;margin:12px 0;font-size:14px}
+input[type=range]{width:100%;accent-color:var(--rose)}
+textarea,input[type=text]{width:100%;font:inherit;border:1px solid var(--pink2);border-radius:14px;padding:10px;background:#fffafc;color:var(--ink);resize:vertical}
+.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.bar{height:12px;background:var(--pink3);border-radius:99px;overflow:hidden}
+.bar>i{display:block;height:100%;background:linear-gradient(90deg,var(--pink),var(--rose));border-radius:99px;transition:width .3s}
+.check{display:flex;gap:10px;align-items:flex-start;padding:6px 0}
+.check input{width:20px;height:20px;accent-color:var(--rose);margin-top:5px}
+table{width:100%;border-collapse:collapse;font-size:14px}
+td,th{padding:8px;border-bottom:1px solid var(--pink3);text-align:right;vertical-align:top}
+th{color:var(--rose)}
+details{margin:6px 0}
+summary{cursor:pointer;color:var(--rose);font-weight:700}
+.feel button{margin:4px}
+footer{text-align:center;color:var(--soft);font-size:12px;padding:20px}
+.tag{font-size:12px;background:var(--lav);padding:1px 10px;border-radius:99px;color:#6a4fa0}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>🌸 بيت مريم</h1>
+  <p>مكان لي أنا — ألاحظ، أهدّي جسمي، أسمع نفسي، وبعدين أقرر</p>
+</header>
+
+<nav id="nav"></nav>
+
+<main>
+
+<!-- ============ اليوم ============ -->
+<section class="page on" id="p-today">
+  <h2>🌿 اليوم</h2>
+  <p class="lead">مو لازم أصلح كل شي. أقل شي يكفي: أنا هنا، هذا جسمي، وهذي اللحظة لي.</p>
+
+  <div class="card rose">
+    <h3>🫀 مقياس انشراح الصدر</h3>
+    <p class="small">0 = صدري مفتوح ومرتاح · 10 = منقبض ومخنوق</p>
+    <div class="row"><span>الحين:</span><input type="range" id="chest" min="0" max="10" value="5"><b id="chestV">5</b></div>
+    <div class="row" style="margin-top:8px">
+      <button class="btn" id="saveChest">احفظي القراءة</button>
+      <span class="small" id="chestMsg"></span>
+    </div>
+    <div id="chestLog" class="small" style="margin-top:8px"></div>
+  </div>
+
+  <div class="card">
+    <h3>🧭 شنو أحس فيه الحين؟</h3>
+    <p class="small">اختاري الأقرب، وبطلع لچ أي جزء غالبًا تفعّل وشنو يهدّيه.</p>
+    <div class="feel" id="feel"></div>
+    <div id="feelOut"></div>
+  </div>
+
+  <div class="card mint">
+    <h3>✅ ثلاث أشياء صغيرة لليوم</h3>
+    <div id="daily"></div>
+    <p class="small">تتصفّر كل يوم جديد. ثلاثة وبس، والباقي إضافة.</p>
+  </div>
+
+  <div class="card sun">
+    <h3>🔘 القاعدة اللي أمشي عليها</h3>
+    <div class="say">لا ألاحق، ولا أعاقب. أعيش.</div>
+    <div class="say">أحس ← أسمّي ← أهدّي جسمي ← أسمع الجزء ← بعدين أقرر.</div>
+    <div class="say">ما أقرر قرار كبير وأنا مفعّلة، وما أتنازل عنه لأني هديت.</div>
+  </div>
+
+  <div class="card">
+    <h3>📝 ملاحظة اليوم</h3>
+    <textarea data-note="today" rows="3" placeholder="أي شي بخاطري..."></textarea>
+  </div>
+</section>
+
+<!-- ============ أجزائي ============ -->
+<section class="page" id="p-parts">
+  <h2>🗺️ أجزائي وقد إيش ياخذون مني</h2>
+  <p class="lead">الأرقام الأولية تقديري من كثرة تكرار كل جزء في كلامچ وملفاتچ، مو قياس علمي. عدّليها على اللي تحسينه فعلًا، وبيتغير الرسم والترتيب.</p>
+
+  <div class="card lav">
+    <h3>📊 توزيع الحمل الحالي</h3>
+    <div id="loadChart"></div>
+    <div id="topParts" class="small" style="margin-top:10px"></div>
+  </div>
+
+  <div class="card sun">
+    <h3>🔑 الفكرة اللي تجمعهم</h3>
+    <p>كل الأجزاء تقريبًا تدور حول احتياج واحد: <b>أكون مهمة ومسموعة ومحبوبة بدون ما أتعب وأثبت قبل.</b> الطفلة الصغيرة هي المركز المحتمل، وباقي الأجزاء حماة لها بأساليب مختلفة. هذي فرضية استكشاف من جلساتچ، مو تشخيص.</p>
+    <p class="small">ترتيب الشغل المقترح من موقعچ: أول شي أبني ثقة الحامي، وبعدين أقرب للطفلة بحضور هادي، وما أروح للجذر وأنا منهكة.</p>
+  </div>
+
+  <div id="partsList"></div>
+</section>
+
+<!-- ============ أولوياتي ============ -->
+<section class="page" id="p-priority">
+  <h2>⚖️ أولوياتي ووقتي</h2>
+  <p class="lead">وين رايح يومي؟ الأرقام الأولية تقدير، غيريها على الواقع. الهدف مو الكمال، الهدف أرجّع ساعات لي وللبنات وللي يفرحني.</p>
+
+  <div class="card">
+    <h3>⏱️ تدقيق الوقت (ساعات في اليوم)</h3>
+    <div id="audit"></div>
+    <div id="auditSum" class="say"></div>
+  </div>
+
+  <div class="grid">
+    <div class="card" style="background:#fff1f1">
+      <h3>🛑 أوقف</h3>
+      <ul>
+        <li>أعيد شرح نفس الاحتياج لحسين بعد ما وصل.</li>
+        <li>أختبر غيرته أو أحاول أخليه يغار.</li>
+        <li>أراقب حياة أختي وأقارن.</li>
+        <li>أحلل نفسي وأنا منهكة أو في آخر الليل.</li>
+        <li>أكتب رسائل طويلة لشخص ما رد (أكتبها للمذكرة بس).</li>
+      </ul>
+    </div>
+    <div class="card sun">
+      <h3>⬇️ أقلّل</h3>
+      <ul>
+        <li>جلسات IFS: مرة بالأسبوع، 15–20 دقيقة، جزء واحد.</li>
+        <li>فيديوهات ومحتوى العلاج النفسي (يصير حمل إضافي).</li>
+        <li>نقاش مشاكل العائلة مع أهلي.</li>
+        <li>التسوق والتصفح كتهدئة سريعة.</li>
+      </ul>
+    </div>
+    <div class="card mint">
+      <h3>⬆️ أزيد</h3>
+      <ul>
+        <li>حضور حقيقي مع البنات (15 دقيقة لكل وحدة).</li>
+        <li>مشروعي بخطوة صغيرة محددة.</li>
+        <li>نوم، ماي، أكل، حركة خفيفة.</li>
+        <li>شخص واحد آمن أكلمه.</li>
+        <li>شي يومي لي: نباتات، مكياج، تطريز، تصوير.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card lav">
+    <h3>📌 فلتر قبل ما أصرف وقت على أي شي</h3>
+    <ol style="padding-right:20px">
+      <li>هل هذا يخدم صحتي أو بناتي أو مشروعي أو راحتي؟</li>
+      <li>هل أنا اللي اخترته، أو جزء خايف يدفعني؟</li>
+      <li>هل بيصير فيه فعل بعده، أو بس دوران في الراس؟</li>
+      <li>لو ما سويته اليوم، شنو الأسوأ اللي بيصير فعلًا؟</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ============ بناتي ============ -->
+<section class="page" id="p-girls">
+  <h2>👧👧 بناتي</h2>
+  <p class="lead">مو لازم أكون الأم الخارقة. أم متعبة وحاضرة أفضل من أم مثالية ومنهكة.</p>
+
+  <div class="card rose">
+    <h3>🤍 مبدأ أول</h3>
+    <div class="say">الأم المرتاحة مو أنانية. بناتي ما يحتجن أم ما تتألم أبدًا، يحتجن أم ما تُترك وحدها مع ألمها.</div>
+    <p class="small">وقت اللعب مو لازم يكون طول اليوم. 30–60 دقيقة من حضور كامل (بدون جوال) تكفي، حسب ما حفظتيه.</p>
+  </div>
+
+  <div class="card mint">
+    <h3>🌤️ طقوس صغيرة تفتح الصدر</h3>
+    <div id="girlRituals"></div>
+  </div>
+
+  <div class="card">
+    <h3>⏳ وقت خاص لكل وحدة (15 دقيقة)</h3>
+    <div class="grid">
+      <div><b>البنت الكبيرة</b><br><input type="text" data-note="g1" placeholder="شنو تحب نسوي؟"></div>
+      <div><b>البنت الصغيرة</b><br><input type="text" data-note="g2" placeholder="شنو يهدّيها ويفرحها؟"></div>
+    </div>
+    <p class="small">اختاري شي بسيط: لعب على الأرض، أغنية، حضن طويل، تصوير بدون هدف.</p>
+  </div>
+
+  <div class="card sun">
+    <h3>🚦 لحظة قبل ما أفقد أعصابي</h3>
+    <ol style="padding-right:20px">
+      <li><b>أوقف 7 ثواني</b> — نفس، أرمش، ما أتكلم.</li>
+      <li><b>أحط البنات بمكان آمن</b> وأبتعد خطوتين لو لزم.</li>
+      <li><b>ماي بارد على الوجه</b> أو أضغط قدمي على الأرض.</li>
+      <li><b>لا أضرب ولا أرد بالجسد.</b> إذا تأذيت منها، أبعد جسمي وأحمي نفسي بهدوء.</li>
+      <li>إذا حسيت إني قريبة أفقد السيطرة، أطلب من شخص بالغ يستلم الموقف دقايق.</li>
+    </ol>
+    <div class="say">الإصلاح بعدها: «ماما انفعلت. ما كان صح. أحبچ.» — جملة بسيطة بدون جلد ذات، وبدون ما أطلب منها تسامحني.</div>
+    <p class="small">لو حصل موقف وأنتِ حاسة بالذنب عليه، الذنب هنا معلومة تقول إنچ تهتمين، مو دليل إنچ أم سيئة.</p>
+  </div>
+
+  <div class="card lav">
+    <h3>🌙 النوم والرضاعة (من محادثاتچ)</h3>
+    <ul>
+      <li>اكسري الربط بين الرضاعة والنوم: ارضعيها قبل النوم بـ20 دقيقة وحطيها وهي نعسانة بس صاحية.</li>
+      <li>عند الصحيان: انتظري دقيقة، طبطبي وهمسي بدون حمل أو رضاعة، وزيدي مدة الانتظار تدريجيًا.</li>
+      <li>أي نص ساعة تنامينها لما يقدر أحد يمسكها = إنقاذ. ما يلمع البيت، ركزي على طاقتچ.</li>
+      <li>خلي القرارات الكبيرة (فطام، رجعة رضاعة) مع طبيب أطفال أو استشارية رضاعة، مو من إحساس لحظة تعب.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>📋 قراراتي لهالأسبوع</h3>
+    <textarea data-note="girlsWeek" rows="3" placeholder="مثلًا: لعب 10 دقايق قبل أي مهمة، وقت نوم ثابت..."></textarea>
+  </div>
+</section>
+
+<!-- ============ أنا وهواياتي ============ -->
+<section class="page" id="p-me">
+  <h2>🎀 أنا وهواياتي ومشروعي</h2>
+  <p class="lead">المشروع والهوايات مو لإثبات قيمتي. هي لأنها تعجبني، ولأنها تذكرني إني أنا.</p>
+
+  <div class="card mint">
+    <h3>🌱 اللي يفرحني (من ملفاتچ)</h3>
+    <span class="chip">🌿 نباتات المونستيرا</span><span class="chip">🪵 الليزر والخشب</span><span class="chip">📸 التصوير</span>
+    <span class="chip">💄 المكياج</span><span class="chip">🎨 تصميم الدعوات</span><span class="chip">🧵 تطريز وكرافت</span>
+    <span class="chip">☕ قهوة لوحدي</span><span class="chip">🛍️ ديكور البيت</span>
+    <p class="small" style="margin-top:8px">اختاري واحد اليوم، حتى 10 دقايق.</p>
+  </div>
+
+  <div class="card sun">
+    <h3>🗂️ قوائمي المبعثرة (من الملفات)</h3>
+    <div id="myTodo"></div>
+    <div class="row" style="margin-top:8px">
+      <input type="text" id="newTodo" placeholder="أضيفي شي..." style="flex:1">
+      <button class="btn" id="addTodo">+</button>
+    </div>
+  </div>
+
+  <div class="card rose">
+    <h3>💰 مشروع الليزر: نظام بدل ضغط</h3>
+    <p>أول 90 يوم: منتجات قليلة وجودة عالية واختبار السوق، بدون ما أخليه مقياس قيمتي.</p>
+    <table>
+      <tr><th>الخط</th><th>أفكار</th></tr>
+      <tr><td>أطفال ومواليد</td><td>لوحات أسماء، ديكور غرف، هدايا ولادة</td></tr>
+      <tr><td>مناسبات</td><td>دعوات، توزيعات، هدايا أعراس ومواليد</td></tr>
+      <tr><td>بيت وتنظيم</td><td>لوحات، منظمات، قطع ديكور</td></tr>
+    </table>
+    <p class="small">لكل منتج: التكلفة ← وقت الشغل ← سعر البيع ← الربح ← تصوير ← طريقة الطلب. لو ما بعت اليوم، هذي معلومة عن السوق، مو حكم عليّ.</p>
+  </div>
+
+  <div class="card lav">
+    <h3>👑 أنا مو بس زوجة وأم</h3>
+    <p>اكتبي 3 أشياء تحبينها فيچ، بدون أحد يشوفها:</p>
+    <input type="text" data-note="love1" placeholder="1"><br><br>
+    <input type="text" data-note="love2" placeholder="2"><br><br>
+    <input type="text" data-note="love3" placeholder="3">
+  </div>
+</section>
+
+<!-- ============ العلاقة ============ -->
+<section class="page" id="p-rel">
+  <h2>🤍 العلاقة مع حسين</h2>
+  <p class="lead">أنا ما أقرر هنا إذا تستمرين أو لا. هذي صفحة تخليچ تعيشين اليوم بأقل استنزاف، وتقيّمين بالأفعال مو بالوعود.</p>
+
+  <div class="card rose">
+    <h3>🔘 الفرق بين اللي أقدر عليه واللي لا</h3>
+    <div class="grid">
+      <div><b>بيدي:</b><ul><li>حدودي وردودي</li><li>اهتمامي بنفسي وبناتي</li><li>إني أطلب بوضوح مرة وحدة</li><li>أتوقف عن المطاردة والعقاب</li></ul></div>
+      <div><b>مو بيدي:</b><ul><li>إنه يفهم أو يتغير</li><li>إنه يفي بوعوده</li><li>تفسيره وردة فعله</li><li>إنه يحبني بالطريقة اللي أبيها</li></ul></div>
+    </div>
+  </div>
+
+  <div class="card sun">
+    <h3>🗣️ جمل جاهزة</h3>
+    <div class="say">«قلت اللي عندي، والباقي مو مسؤوليتي.»</div>
+    <div class="say">«أنا تعبانة ومب قادرة أكمل النقاش الحين، بنرجع له بعدين.»</div>
+    <div class="say">«قلت إنك بتسوي كذا وما سويته. من الحين أخطط على اللي يصير فعلًا.»</div>
+    <div class="say">«أحتاج منك [شي محدد] قبل [تاريخ]. إذا ما تقدر، بلغني قبله.»</div>
+    <div class="say">«ما أبي أعيد نفس النقاش. ما راح أحكم على الكلام، بشوف الأيام.»</div>
+    <p class="small">جملة وحدة وبعدها أوقف. التكرار عشر مرات ما يوصل أكثر.</p>
+  </div>
+
+  <div class="card mint">
+    <h3>📊 بطاقة أدلة 30 يوم (الأفعال مو الكلام)</h3>
+    <p class="small">علّمي مرة بالأسبوع، بدون مراقبة يومية. هذي بيانات لقرارچ، مو اختبار له.</p>
+    <div id="evidence"></div>
+  </div>
+
+  <div class="card lav">
+    <h3>🏠 أهله والحدود</h3>
+    <ul>
+      <li>ما أطلب منه يكره أهله. أطلب موقف واضح وقت التجاوز عليّ.</li>
+      <li>أنا أقدر أحط حدودي المباشرة: أنهي النقاش، أقلل الزيارة، أحمي خصوصيتي.</li>
+      <li>ما أحول كل موقف لاختبار لحبه.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>💳 اتفاق مالي (يستاهل ورقة واحدة واضحة)</h3>
+    <ul>
+      <li>دخل الأسرة والالتزامات الأساسية</li>
+      <li>مبلغ شخصي لكل واحد</li>
+      <li>مساعدة الأهل: كم؟ ومتى؟</li>
+      <li>أي قرار مالي كبير يحتاج اتفاق الاثنين</li>
+    </ul>
+    <p class="small">لو في ديون أو التزامات تأثر على حقوق الأسرة، تستاهلين استشارة قانونية مستقلة بالبحرين فقط لمعرفة حقوقچ، مو لاتخاذ قرار.</p>
+  </div>
+
+  <div class="card sun">
+    <h3>🧭 ثلاثة أسئلة أجّلها وما أجاوبها وأنا مفعّلة</h3>
+    <ol style="padding-right:20px">
+      <li>هل حسين قادر وراغب يتغير تغيير مستمر؟</li>
+      <li>هل أنا أقدر أستعيد صحتي النفسية داخل هذي العلاقة لو تغيرت الظروف؟</li>
+      <li>لو رجعت قوية وهادية، هل أبي هالعلاقة؟</li>
+    </ol>
+    <p class="small">وإذا كان في أي خوف على سلامتچ، الأمان أول قبل أي نقاش أو قرار.</p>
+  </div>
+
+  <div class="card">
+    <textarea data-note="rel" rows="3" placeholder="ملاحظاتي عن العلاقة هالأسبوع (وقائع فقط)..."></textarea>
+  </div>
+</section>
+
+<!-- ============ الأهل ============ -->
+<section class="page" id="p-fam">
+  <h2>👪 أمي وأختي والعائلة</h2>
+  <p class="lead">أختي مو معياري. وأمي ممكن تشوفني بصورة قديمة، وأنا ما أعيش حياتي أصلحها.</p>
+
+  <div class="card rose">
+    <h3>⚖️ لما تظهر المقارنة</h3>
+    <ol style="padding-right:20px">
+      <li>أسمّي: «قارنت نفسي بأختي الحين».</li>
+      <li>أسأل: شنو بالضبط شفته وتمنيته؟ (راحة؟ مبادرة؟ تدليل؟ أمان؟)</li>
+      <li>أكتب الاحتياج: «أنا أبي ____».</li>
+      <li>خطوة صغيرة لي، بغض النظر عنها.</li>
+    </ol>
+    <div class="say">أنا ما أراقب أختي عشان أعرف شنو أحتاج أنا.</div>
+  </div>
+
+  <div class="card sun">
+    <h3>🚪 قول «لا» بدون محكمة</h3>
+    <div class="say">«لا، ما أقدر.»</div>
+    <p>وبعدها ما أبرر ولا أرسل توضيح. لو الجزء المراقب قال «بيقولون ثقيلة»، أرد عليه: <b>«ممكن. وأنا أقدر أتحمل إن أحد يكوّن عني رأي ما يعجبني.»</b></p>
+  </div>
+
+  <div class="card lav">
+    <h3>🧸 أمي</h3>
+    <ul>
+      <li>أنا أعرف إني كنت أحتاج احتواء وما حصلت عليه. هذا ما يحتاج إثبات لها.</li>
+      <li>أقلل جرعة التفاعل لو كل مرة ترجعني للانهيار، تقليل مو قطع.</li>
+      <li>أحدد مسبقًا الوقت والموضوع.</li>
+    </ul>
+  </div>
+
+  <div class="card mint">
+    <h3>🍫 عمتي والشوكولاتة (مثال تطبيقي)</h3>
+    <p>أنا أقدر أحدد اللي أسمح فيه لبناتي بهدوء ومن غير ما أنتظر موقف حسين:</p>
+    <div class="say">«أنا ما أبي بنتي تاكل هالنوع الحين، تكفين احترمي.»</div>
+    <p class="small">إذا تكرر التجاوز، أقلل احتكاك الموقف أو أنهيه. ما أستنى وعد منه عشان أبدأ أحمي.</p>
+  </div>
+
+  <div class="card">
+    <h3>👥 الدعم</h3>
+    <p>اكتبي اسم شخص واحد (أو اثنين) ممكن أكلمه من غير ما أنلام أو أنقلل:</p>
+    <input type="text" data-note="support" placeholder="مين شخص آمن؟ حتى لو جزء صغير من الأمان">
+  </div>
+</section>
+
+<!-- ============ جسمي ============ -->
+<section class="page" id="p-body">
+  <h2>🫁 جسمي وراحتي وانشراح الصدر</h2>
+  <p class="lead">الصدر ينشرح لما الجسم يحس بأمان، مو لما أقنع نفسي. نبدأ بالجسم.</p>
+
+  <div class="grid">
+    <div class="card mint"><h3>🫁 تنفس 4-6</h3><p>شهيق 4 ثواني، زفير 6 ثواني، 5 دورات. الزفير الطويل هو اللي يهدّي.</p></div>
+    <div class="card sun"><h3>👁️ 5-4-3-2-1</h3><p>5 أشياء أشوفها، 4 ألمسها، 3 أسمعها، 2 أشمها، 1 أتذوقها.</p></div>
+    <div class="card lav"><h3>🧊 تبريد</h3><p>ماي بارد على الوجه واليدين، أو مسك شي بارد لثواني.</p></div>
+    <div class="card rose"><h3>🤲 لمس لطيف</h3><p>يد على الصدر ويد على البطن، أو حضن نفسي مع زفير بطيء.</p></div>
+  </div>
+
+  <div class="card">
+    <h3>🌸 روتين فتح الصدر (5–8 دقايق)</h3>
+    <ol style="padding-right:20px">
+      <li>أجلس، قدمي على الأرض، وأفتح ظهري بدون تشدد.</li>
+      <li>أرفع الكتفين ببطء وأرجعهم للخلف مع زفير.</li>
+      <li>تمايل خفيف للجسم يمين ويسار (مو شد قوي).</li>
+      <li>يد على الصدر: «هذا جسمي، وهذي اللحظة لي».</li>
+      <li>ماي أو شي دافي أشربه ببطء.</li>
+    </ol>
+    <p class="small">الحركة هنا لطيفة، مو تفريغ قوي. لو جاني بكاء أو ثقل، أخليه يطلع بدون جلد.</p>
+  </div>
+
+  <div class="card sun">
+    <h3>🧱 الأساسيات اللي تدعم المزاج</h3>
+    <div id="basics"></div>
+  </div>
+
+  <div class="warn">
+    <b>مهم:</b> ألم الصدر الجديد أو الشديد، أو اللي معه ضيق نفس أو دوخة أو تعرّق أو غثيان أو ألم يمتد للذراع أو الفك، يحتاج تقييم طبي عاجل، لا تفسرينه تلقائيًا بالمشاعر. وبعد عملية الأسنان لو في نزيف مستمر أو حرارة أو تدهور، كلمي الطبيب.
+  </div>
+</section>
+
+<!-- ============ جدولي ============ -->
+<section class="page" id="p-plan">
+  <h2>📅 جدولي</h2>
+  <p class="lead">خفيف وثابت. 15–25 دقيقة بالكثير للجزء الخاص بالشغل على نفسي.</p>
+
+  <div class="card">
+    <table>
+      <tr><th>اليوم</th><th>صباح (5–10 د)</th><th>مساء (10–15 د)</th></tr>
+      <tr><td>السبت</td><td>3 جمل امتنان + فحص جسدي</td><td>أي جزء ظهر اليوم؟</td></tr>
+      <tr><td>الأحد</td><td>تنفس 4-6</td><td>جلسة جزء واحد (15–20 د)</td></tr>
+      <tr><td>الاثنين</td><td>خطوة وحدة للمشروع</td><td>رسالة لمريم الصغيرة + جلوس صامت</td></tr>
+      <tr><td>الثلاثاء</td><td>5-4-3-2-1</td><td>مراجعة ملاحظات أو موعد دعم</td></tr>
+      <tr><td>الأربعاء</td><td>«الوزن الذاتي»: أقرر إن إحساسي مهم قبل ما أشرحه</td><td>15 د لعب مع البنات بدون جوال</td></tr>
+      <tr><td>الخميس</td><td>دليل واحد إني أستاهل</td><td>كتابة 10 د أو جلوس صامت</td></tr>
+      <tr><td>الجمعة</td><td>راحة بدون مهام علاجية</td><td>تلخيص الأسبوع</td></tr>
+    </table>
+  </div>
+
+  <div class="card mint">
+    <h3>🌷 90 يوم</h3>
+    <ul>
+      <li><b>الشهر 1 — أنا بأمان:</b> نوم وأكل وماي، دقيقتين مع الطفلة الداخلية، ملاحظة بدون حرب، بداية المشروع.</li>
+      <li><b>الشهر 2 — أنا موجودة:</b> أطلب مرة وحدة وأتوقف، أقول «لا» بدون محكمة، أبني شخص آمن واحد، أصوّر منتجاتي.</li>
+      <li><b>الشهر 3 — أنا أعيش:</b> أثبت الروتين، أقيّم بطاقة الأدلة، وأرجع لقراراتي الكبيرة بهدوء ووقت.</li>
+    </ul>
+  </div>
+
+  <div class="card sun">
+    <h3>📆 أبي أضيف</h3>
+    <ul>
+      <li>رياضة خفيفة (المشي 10 دقايق يكفي بداية)</li>
+      <li>موعد الأسنان: تنظيف وترقيع الضروس</li>
+      <li>موعد مختص نفسي أو طبيب للمتابعة</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ الدعم ============ -->
+<section class="page" id="p-help">
+  <h2>🛟 لو صار الثقل أكبر مني</h2>
+  <p class="lead">هالمكان مساعد، مو بديل عن إنسان حقيقي ولا عن مختص.</p>
+
+  <div class="warn">
+    <b>إذا جتني فكرة إني أختفي أو ما أبي أكمل، أو أخاف أؤذي نفسي:</b>
+    <ul>
+      <li>ما أخليها بيني وبين نفسي. أكلم شخص أثق فيه الحين.</li>
+      <li>أبعد أي شي ممكن أؤذي فيه نفسي.</li>
+      <li>إذا في خطر قريب: الطوارئ بالبحرين <b>999</b> أو أقرب مستشفى.</li>
+      <li>أحجز مع طبيب نفسي أو معالج، ويستاهل أول موعد يكون قريب مو بعيد.</li>
+    </ul>
+  </div>
+
+  <div class="card rose">
+    <h3>💬 رسالة جاهزة أرسلها لشخص أثق فيه</h3>
+    <div class="say">«أنا تعبانة اليوم وأحتاج أحد يكون معي. مو لازم تحل لي شي، بس أبي أحد يسمعني.»</div>
+  </div>
+
+  <div class="card lav">
+    <h3>✍️ شخص واحد، رقم واحد</h3>
+    <input type="text" data-note="helpPerson" placeholder="الاسم / الرقم">
+  </div>
+
+  <div class="card sun">
+    <p class="small">اللي كتبتيه في ملفاتچ فيه جمل مثل «أختفي أحسن» و«بموت قهر». أنا آخذها بجدية. ويستاهل ألمچ مختص يمشي معچ، مو بس أدوات ذاتية.</p>
+  </div>
+</section>
+
+</main>
+
+<footer>🌸 استكشاف ذاتي مبني على كلامچ، مو تشخيص ولا بديل عن العلاج</footer>
+
+<script>
+function save(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
+function load(k,d){try{var v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return d}}
+function $(s){return document.querySelector(s)}
+function $$(s){return Array.prototype.slice.call(document.querySelectorAll(s))}
+
+/* nav */
+var pages=[["today","🌿 اليوم"],["parts","🗺️ أجزائي"],["priority","⚖️ أولوياتي"],["girls","👧 بناتي"],["me","🎀 أنا"],["rel","🤍 العلاقة"],["fam","👪 الأهل"],["body","🫁 جسمي"],["plan","📅 جدولي"],["help","🛟 دعم"]];
+var nav=$("#nav");
+pages.forEach(function(p){
+  var b=document.createElement("button");b.textContent=p[1];b.dataset.p=p[0];
+  b.onclick=function(){show(p[0])};nav.appendChild(b);
+});
+function show(id){
+  $$(".page").forEach(function(s){s.classList.toggle("on",s.id==="p-"+id)});
+  $$("nav button").forEach(function(b){b.classList.toggle("on",b.dataset.p===id)});
+  window.scrollTo({top:0,behavior:"smooth"});
+  save("lastPage",id);
+}
+show(load("lastPage","today"));
+
+/* notes */
+$$("[data-note]").forEach(function(el){
+  el.value=load("n_"+el.dataset.note,"");
+  el.addEventListener("input",function(){save("n_"+el.dataset.note,el.value)});
+});
+
+/* chest meter */
+var chest=$("#chest");
+chest.oninput=function(){$("#chestV").textContent=chest.value};
+function renderChest(){
+  var log=load("chestLog",[]);
+  $("#chestLog").innerHTML=log.slice(-7).reverse().map(function(r){return "• "+r.d+" — "+r.v+"/10"}).join("<br>");
+}
+$("#saveChest").onclick=function(){
+  var log=load("chestLog",[]);
+  log.push({d:new Date().toLocaleString("ar-BH",{weekday:"short",hour:"2-digit",minute:"2-digit"}),v:chest.value});
+  save("chestLog",log.slice(-30));
+  $("#chestMsg").textContent="انحفظت 🌸";
+  renderChest();
+};
+renderChest();
+
+/* parts data */
+var PARTS=[
+ {id:"attach",e:"💙",n:"التعلّق والخوف",w:8,role:"يراقب إشارات البعد ويندفع للتواصل قبل ما أرتاح.",body:"الحلق والصدر",relief:"يد على الصدر + 3 أنفاس 4-7-8، وأجّلي أي محادثة كبيرة 20 دقيقة.",job:"منبّه قرب بدل مطارد."},
+ {id:"caution",e:"🛡️",n:"الحذر",w:6,role:"يستبق الخيبة ويقرأ كل نبرة وتصرف.",body:"القلب والرقبة والظهر والراس",relief:"تنفس 4-4-6 خمس دورات، وأجّلي أي رد فعل 24 ساعة.",job:"محقق أمان يشتغل على أدلة مو توقعات."},
+ {id:"fly",e:"🕊️",n:"مريم الطايرة",w:5,role:"يخفيني ويصغّرني عشان ما أنرفض.",body:"الظهر والذراعين والرقبة",relief:"يد على ذراعيّ: «سامعتچ، وما تحتاجين تطيرين حتى أشوفچ».",job:"تقول لي متى أحتاج مساحة بدون ما أختفي."},
+ {id:"freeze",e:"⚡",n:"التوتر والانجماد",w:6,role:"ركض للإنجاز أو تجمّد.",body:"رجفة اليد",relief:"5-4-3-2-1 ثم خطوة وحدة صغيرة.",job:"حارس طاقة يقول لي متى أوقف."},
+ {id:"exist",e:"🌫️",n:"الوجود",w:5,role:"يثبت قيمتي بالفعل والإقناع.",body:"تخدّر وضيق بالصدر",relief:"10 دقايق بدون إثبات أو إقناع، وقهوة وقعدة.",job:"يخلّيني أكون بدون أداء."},
+ {id:"promises",e:"💔",n:"الوعود المكسورة",w:8,role:"يراقب كل وعد ونتيجته ويترقب الخيبة.",body:"ثقل الظهر والصدر",relief:"أرجع كتفيّ للخلف ببطء: «هذا وزن قديم متراكم».",job:"يمسك سجل وقائع واضح."},
+ {id:"compare",e:"⚖️",n:"المقارِن",w:7,role:"يقيس قيمتي بأختي وبغيرها.",body:"انقباض الصدر والذراعين",relief:"سمّي: «قارنت نفسي الحين». وبعدين: شنو أبي أنا؟",job:"مترجم احتياجات."},
+ {id:"hannono",e:"🔥",n:"حنّونو",w:9,role:"يشرح ويبرر ويعيد قبل ما أرتاح.",body:"شد الرقبة والحلق وحرارة بالظهر",relief:"يد على الحلق: «قلت اللي عندي، والباقي مو مسؤوليتي».",job:"يقول جملة وحدة ويوقف."},
+ {id:"rage",e:"🍦",n:"القهر",w:8,role:"يحميني بالابتعاد ويطلب رعاية طارئة.",body:"إنهاك جسدي",relief:"رعاية خلال نفس الساعة: ماي، دش، مشي، شي أحبه.",job:"يحمي حدودي بدون انفجار."},
+ {id:"guard",e:"🛡️",n:"الحامي الصغير",w:4,role:"يدور حب «بأي طريقة» لحماية الطفلة.",body:"فراغ مفاجئ أو وحدة",relief:"أفحص علامات الأمان قبل ما أعطي: ثبات، احترام، وفاء.",job:"فاحص أمان."},
+ {id:"child",e:"🧸",n:"الطفلة الصغيرة",w:5,role:"تحمل سؤال «ليش ما أحد يحبني كما أنا؟»",body:"غصة بالحلق أو ثقل بالقلب",relief:"حضور بدون كلام دقيقتين: «أنا هنا، ما فيچ شي غلط».",job:"تُرعى وتلعب."},
+ {id:"scream",e:"📢",n:"صرّاخ",w:5,role:"يضغط ويخوّف عشان أتحرك.",body:"توتر وضغط داخلي",relief:"أسأله: شنو تخاف يصير لو وقفت 10 دقايق؟ ثم خطوة أو راحة.",job:"ينبّه بدل ما يصرخ."}
+];
+var weights=load("weights",null)||PARTS.reduce(function(o,p){o[p.id]=p.w;return o},{});
+
+function renderParts(){
+  var total=PARTS.reduce(function(s,p){return s+Number(weights[p.id])},0)||1;
+  var sorted=PARTS.slice().sort(function(a,b){return weights[b.id]-weights[a.id]});
+  $("#loadChart").innerHTML=sorted.map(function(p){
+    var pc=Math.round(weights[p.id]/total*100);
+    return '<div style="margin:6px 0"><div class="row" style="justify-content:space-between"><span>'+p.e+' '+p.n+'</span><b>'+pc+'%</b></div><div class="bar"><i style="width:'+pc+'%"></i></div></div>';
+  }).join("");
+  $("#topParts").innerHTML="الأكثر اشتغالًا الحين: <b>"+sorted.slice(0,3).map(function(p){return p.e+" "+p.n}).join("، ")+"</b>. هذا مو معناه إنهم الأهم، معناه إنهم ياخذون أكثر من طاقتچ.";
+  var list=$("#partsList");
+  if(!list.dataset.built){
+    list.innerHTML=PARTS.map(function(p){
+      return '<div class="card"><h3>'+p.e+' '+p.n+'</h3>'
+       +'<p>'+p.role+'</p>'
+       +'<p class="small">🫀 في الجسم: '+p.body+'</p>'
+       +'<div class="say">إسعاف سريع: '+p.relief+'</div>'
+       +'<p>🌱 الدور الجديد: <b>'+p.job+'</b></p>'
+       +'<div class="small">ياخذ من طاقتي: <b id="v-'+p.id+'"></b>/10</div>'
+       +'<input type="range" min="0" max="10" data-w="'+p.id+'"></div>';
+    }).join("");
+    list.dataset.built=1;
+    $$("[data-w]").forEach(function(r){
+      r.value=weights[r.dataset.w];
+      $("#v-"+r.dataset.w).textContent=r.value;
+      r.oninput=function(){
+        weights[r.dataset.w]=Number(r.value);
+        $("#v-"+r.dataset.w).textContent=r.value;
+        save("weights",weights);renderParts();
+      };
+    });
+  }
+}
+renderParts();
+
+/* feelings */
+var FEEL=[
+ ["ضيقة بالصدر والحلق، أبي أكلمه","attach"],
+ ["قهر ومقهورة","rage"],
+ ["مقارنة بأختي أو غيرها","compare"],
+ ["أبي أشرح وأعيد وأقنع","hannono"],
+ ["وعد ما انسوى","promises"],
+ ["ما أقدر أتحرك أو أرتجف","freeze"],
+ ["أبي أنكتم وأختفي","fly"],
+ ["مو مهمة / وحدة","child"],
+ ["خايفة يستغلني أو يتلاعب","caution"]
+];
+$("#feel").innerHTML=FEEL.map(function(f,i){return '<button class="btn ghost" data-f="'+i+'">'+f[0]+'</button>'}).join("");
+$$("[data-f]").forEach(function(b){
+  b.onclick=function(){
+    var f=FEEL[b.dataset.f];
+    var p=PARTS.filter(function(x){return x.id===f[1]})[0];
+    var extra="";
+    if(f[1]==="fly"){extra='<div class="warn">لو الفكرة صارت «أختفي من الحياة» وليس بس «أنكتم»، روحي لصفحة 🛟 دعم وكلمي شخص الحين.</div>'}
+    $("#feelOut").innerHTML='<div class="card rose"><h3>'+p.e+' '+p.n+'</h3><p>'+p.role+'</p><div class="say">'+p.relief+'</div><p class="small">وبعدين اسألي: شنو أحتاجه أنا الحين، بغض النظر عنه؟</p></div>'+extra;
+  };
+});
+
+/* daily */
+var today=new Date().toISOString().slice(0,10);
+var DAILY=[["🫁 شي للجسم (ماي، تنفس، مشي، شاور)","body"],["👧 شي للبنات (10 دقايق حضور)","girls"],["🌸 شي لي (هواية، قهوة، مشروع)","me"]];
+var dstate=load("daily_"+today,{});
+$("#daily").innerHTML=DAILY.map(function(d){
+  return '<label class="check"><input type="checkbox" data-d="'+d[1]+'"><span>'+d[0]+'</span></label>';
+}).join("");
+$$("[data-d]").forEach(function(c){
+  c.checked=!!dstate[c.dataset.d];
+  c.onchange=function(){dstate[c.dataset.d]=c.checked;save("daily_"+today,dstate)};
+});
+
+/* girl rituals */
+var RIT=["حضن 20 ثانية بدون كلام","10 دقايق لعب على الأرض بدون جوال","قهوة أو شاي دافي وأنا قاعدة معاهم","أغنية أو رقص خفيف بالصالة","أصوّر لحظة حلوة بدون ما أرتبها","قبل النوم: 3 أشياء حلوة صارت اليوم"];
+var rst=load("rituals",{});
+$("#girlRituals").innerHTML=RIT.map(function(r,i){return '<label class="check"><input type="checkbox" data-r="'+i+'"><span>'+r+'</span></label>'}).join("");
+$$("[data-r]").forEach(function(c){c.checked=!!rst[c.dataset.r];c.onchange=function(){rst[c.dataset.r]=c.checked;save("rituals",rst)}});
+
+/* todo */
+var todo=load("todo",[
+ {t:"أروح للأسنان: تنظيف وترقيع الضروس",d:false},
+ {t:"أسوي إكسل بتفاصيل العيدميلاد وبعدين أصوّر",d:false},
+ {t:"طلبية الميكب وفيها البيوتي بلندر",d:false},
+ {t:"تصوير فساتين (علاقات الطابق الثالث)",d:false},
+ {t:"أضيف رياضة لأيامي",d:false},
+ {t:"أفضّي التلفون والكاميرا",d:false}
+]);
+function renderTodo(){
+  $("#myTodo").innerHTML=todo.map(function(x,i){
+    return '<label class="check"><input type="checkbox" data-t="'+i+'" '+(x.d?"checked":"")+'><span style="'+(x.d?"text-decoration:line-through;opacity:.6":"")+'">'+x.t+'</span></label>';
+  }).join("");
+  $$("[data-t]").forEach(function(c){c.onchange=function(){todo[c.dataset.t].d=c.checked;save("todo",todo);renderTodo()}});
+}
+renderTodo();
+$("#addTodo").onclick=function(){
+  var v=$("#newTodo").value.trim();if(!v)return;
+  todo.push({t:v,d:false});save("todo",todo);$("#newTodo").value="";renderTodo();
+};
+
+/* time audit */
+var AUD=[
+ {k:"explain",n:"أشرح وأناقش حسين وأعيد",a:1.5,b:0.25},
+ {k:"ruminate",n:"أفكر فيه وأحلل وأدور",a:2,b:0.5},
+ {k:"compare",n:"أقارن وأراقب حياة غيري",a:1,b:0.25},
+ {k:"content",n:"محتوى وتحليل نفسي وجلسات",a:1.5,b:0.5},
+ {k:"girls",n:"حضور مقصود مع البنات",a:2,b:3},
+ {k:"work",n:"مشروعي (ليزر، تصميم، تصوير)",a:1,b:2},
+ {k:"body",n:"نوم، أكل، ماي، حركة",a:1,b:2},
+ {k:"mine",n:"شي لي (نباتات، مكياج، قهوة)",a:0.25,b:1}
+];
+var aud=load("aud",null)||AUD.reduce(function(o,x){o[x.k]={a:x.a,b:x.b};return o},{});
+$("#audit").innerHTML=AUD.map(function(x){
+  return '<div style="margin:10px 0"><b>'+x.n+'</b>'
+   +'<div class="row"><span class="small" style="width:60px">الحين</span><input type="range" min="0" max="6" step="0.25" data-a="'+x.k+'" style="flex:1"><b id="a-'+x.k+'" style="width:42px"></b></div>'
+   +'<div class="row"><span class="small" style="width:60px">أبي</span><input type="range" min="0" max="6" step="0.25" data-b="'+x.k+'" style="flex:1"><b id="b-'+x.k+'" style="width:42px"></b></div></div>';
+}).join("");
+function sumAudit(){
+  var a=0,b=0;AUD.forEach(function(x){a+=Number(aud[x.k].a);b+=Number(aud[x.k].b)});
+  var freed=AUD.filter(function(x){return aud[x.k].b<aud[x.k].a}).reduce(function(s,x){return s+(aud[x.k].a-aud[x.k].b)},0);
+  $("#auditSum").innerHTML="مجموع الحين: <b>"+a.toFixed(2)+"</b> ساعة · مجموع اللي أبيه: <b>"+b.toFixed(2)+"</b> ساعة · ساعات أرجّعها من الحمل: <b>"+freed.toFixed(2)+"</b>";
+}
+$$("[data-a]").forEach(function(r){r.value=aud[r.dataset.a].a;$("#a-"+r.dataset.a).textContent=r.value;r.oninput=function(){aud[r.dataset.a].a=Number(r.value);$("#a-"+r.dataset.a).textContent=r.value;save("aud",aud);sumAudit()}});
+$$("[data-b]").forEach(function(r){r.value=aud[r.dataset.b].b;$("#b-"+r.dataset.b).textContent=r.value;r.oninput=function(){aud[r.dataset.b].b=Number(r.value);$("#b-"+r.dataset.b).textContent=r.value;save("aud",aud);sumAudit()}});
+sumAudit();
+
+/* evidence card */
+var EV=["يبادر من نفسه بدون تذكير","يلتزم بالاتفاق المحدد","يسمع احتياجي بدون سخرية أو دفاع","يتحمل مسؤولية المهام كاملة (تذكر، تخطيط، تنفيذ)","يحمي احترامي وقت التجاوز","التزام مالي واضح","اهتمام وتواصل بدون ما أطلب"];
+var ev=load("ev",{});
+$("#evidence").innerHTML=EV.map(function(e,i){
+  return '<div style="margin:8px 0"><b>'+e+'</b><div class="row">'
+   +['لم يظهر','أحيانًا','مستمر'].map(function(l,j){
+     return '<label><input type="radio" name="ev'+i+'" value="'+j+'" data-ev="'+i+'"> '+l+'</label>';
+   }).join("")+'</div></div>';
+}).join("");
+$$("[data-ev]").forEach(function(r){
+  if(String(ev[r.dataset.ev])===r.value)r.checked=true;
+  r.onchange=function(){ev[r.dataset.ev]=r.value;save("ev",ev)};
+});
+
+/* basics */
+var BAS=["نمت أكثر من الأمس ولو شوي","شربت ماي كفاية","أكلت شي مشبع","تعرّضت للشمس أو الهواء 10 دقايق","مشيت أو تحركت بلطف","أخذت شاور أو غسلت وجهي"];
+var bs=load("basics_"+today,{});
+$("#basics").innerHTML=BAS.map(function(b,i){return '<label class="check"><input type="checkbox" data-b2="'+i+'"><span>'+b+'</span></label>'}).join("");
+$$("[data-b2]").forEach(function(c){c.checked=!!bs[c.dataset.b2];c.onchange=function(){bs[c.dataset.b2]=c.checked;save("basics_"+today,bs)}});
+</script>
+</body>
+</html>
